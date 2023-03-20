@@ -3,7 +3,6 @@ from aux import *
 from explicit import *
 
 '''------------------ECUACIÓN DE SEGUNDO ORDEN----------------'''
-#TODO: pasar ecuaciones lineales de segundo orden a un sistema (incluso cualquier orden y solo poner como sistema)
 
 # ax''+bx'+cx = 0
 # Transformamos en  x' = y
