@@ -1,5 +1,5 @@
 import numpy as np
-from aux import *
+from .aux import *
 
 import plotly.graph_objects as go
 import plotly.figure_factory as ff

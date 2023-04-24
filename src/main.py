@@ -1,21 +1,8 @@
-from aux import *
-from classifyautoval import *
-from classifytracedet import *
-from diagramphases import *
-from explicit import *
-from secondorder import *
-from sympyfunctions import *
-
-import plotly.figure_factory as ff
-import plotly.graph_objects as go
-
-from flask import Blueprint
-from flask import Response
-
-#TODO: linkear con la calculadora
-
+# TODO: linkear con la calculadora
 
 '''----------------PRUEBAS------------'''
+from src.explicit import sol_explicita
+
 '''SOLUCIÓN EXPLÍCITA'''
 '''Falta especificar los pasos'''
 # sol_explicita(1,3,1,-1) #ejemplo de la documentación
@@ -61,12 +48,11 @@ from flask import Response
 # print(autovalores([[0,1],[-1,0]]))
 
 '''Diagrama de fases'''
-# Solo autovalores reales y distintos por ahora
-#diagramaFase(2,1,0,-1,[])
-diagramaFase(-3,1,1,-3, [(1,2), (1,-2),(1,0)]) #punto inestable
-
-#------------------
-# diagramaFase(2,1,0,-1,[(0,0)]) #TODO: revisar, no funciona poner coeficientes porque salen complejos
-# diagramaFase(1,0,0,1,[]) #punto estelar
-# diagramaFase(-4,1,-1,-2,[])
-
+# diagramaFase(-3,1,1,-3) #nodo estable
+# diagramaFase(2,1,0,-1) #punto de silla
+# diagramaFase(1,0,0,2) #nodo inestable
+# diagramaFase(2,0,0,2) #punto estelar
+# diagramaFase(-4,1,-1,-2) #nodo impropio
+# diagramaFase(-2,4,-2,2) #centro estable
+# diagramaFase(-2,-3,3,-2) #foco estable
+# diagramaFase(2,3,-3,2) #foco inestable

@@ -1,6 +1,4 @@
-from sympyfunctions import *
-from aux import *
-from explicit import *
+from .explicit import *
 
 '''------------------ECUACIÓN DE SEGUNDO ORDEN----------------'''
 

@@ -1,5 +1,5 @@
 from sympyfunctions import *
-from aux import *
+from .aux import *
 
 t, c1, c2, c3, x, y = sy.symbols('t, c1, c2, c3, x, y', real=True)
 
