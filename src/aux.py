@@ -1,13 +1,11 @@
 from .sympyfunctions import *
+from .exc.Exceptions import *
 
 t, c1, c2, c3, x, y = sy.symbols('t, c1, c2, c3, x, y', real=True)
 
 '''-------------------AUXILIARES----------------'''
-def detNoNulo(A):
-    if det_matriz(A)==0: # TODO: mensaje de error
-        print('El determinante de la matriz de coeficientes es nula, por favor, introduzca una con única solución')
-        return False
-    return True
+'''Comprueba que '''
+#def checkInputs(l: list):
 
 # Método de Variación de los Parámetros
 # sol: ecuación a la que aplicamos MVP

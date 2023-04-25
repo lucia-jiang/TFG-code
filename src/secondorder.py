@@ -1,4 +1,4 @@
-from .explicit import *
+from .explicitSFS import *
 
 '''------------------ECUACIÓN DE SEGUNDO ORDEN----------------'''
 

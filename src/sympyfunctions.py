@@ -24,19 +24,19 @@ def exp(a):
 def parte_imaginaria(compl):
     return sy.im(compl)
 
-def parte_real(compl):
+def re(compl):
     return sy.re(compl)
 
 # Número imaginario i
-def num_imaginario():
+def I():
     return sy.I
 
 # Coseno
-def coseno(theta):
+def cos(theta):
     return sy.cos(theta)
 
 # Seno
-def seno(theta):
+def sen(theta):
     return sy.sin(theta)
 
 # Integrar
@@ -46,3 +46,9 @@ def integrar(f,x):
 # Derivar
 def deriv(f, x):
     return sy.diff(f, x)
+
+def Matrix(A):
+    return sy.matrices.Matrix(A)
+
+def symbols(a):
+    return sy.symbols(a)

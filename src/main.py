@@ -1,10 +1,11 @@
 # TODO: linkear con la calculadora
 
 '''----------------PRUEBAS------------'''
-from src.explicit import sol_explicita
+from src.explicitSFS import sol_explicita
+from src.sfs import sfs
 
 '''SOLUCIÓN EXPLÍCITA'''
-'''Falta especificar los pasos'''
+'''Falta especificar los resp'''
 # sol_explicita(1,3,1,-1) #ejemplo de la documentación
 # sol_explicita(1,1,1,1) #ejemplo determinante nulo
 # sol_explicita(-1,0,0,-2) #punto estable
@@ -21,7 +22,7 @@ from src.explicit import sol_explicita
 # segundo_orden(1,-2,-3)
 
 '''CLASIFICAR PUNTO DE EQUILIBRIO (0,0) POR AUTOVALORES'''
-'''Falta especificar los pasos'''
+'''Falta especificar los resp'''
 # clasificar_punto_autoval(1,1,1,1)  #ejemplo determinante nulo
 # clasificar_punto_autoval(1,3,1,-1) #punto de silla
 # clasificar_punto_autoval(-1,0,0,-2) #punto estable
@@ -34,7 +35,7 @@ from src.explicit import sol_explicita
 # clasificar_punto_autoval(3,2,0,3) #autovalor real repetido
 
 '''CLASIFICAR PUNTO DE EQUILIBRIO (0,0) POR TRAZA Y DETERMINANTE'''
-'''Falta especificar los pasos'''
+'''Falta especificar los resp'''
 # clasificar_punto_autoval(1,1,1,1)  #ejemplo determinante nulo
 # clasificar_traza(1,3,1,-1) #punto de silla
 # clasificar_traza(-1,0,0,-2) #punto estable
@@ -56,3 +57,17 @@ from src.explicit import sol_explicita
 # diagramaFase(-2,4,-2,2) #centro estable
 # diagramaFase(-2,-3,3,-2) #foco estable
 # diagramaFase(2,3,-3,2) #foco inestable
+
+
+'''Sistema Fundamental de Soluciones'''
+# sfs(1,3,1,-1) #ejemplo de la documentación
+# sfs(1,1,1,1) #ejemplo determinante nulo
+# sfs(-1,0,0,-2) #punto estable
+sfs(1,0,0,2) #punto inestable
+# sfs(0,1,-1,0) #autovalores complejos puro
+# sfs(2,1,-1,2) #autovalores complejos mixto
+# sfs(-2,1,-1,-2) #autovalores complejos mixo
+# sfs(2,0,0,2) #autovalor repetido
+# sfs(1,0,0,1) #autovalor real repetido
+# sfs(2,0,3,2) #autovalor real repetido
+# sfs(3,2,0,3) #autovalor real repetido
