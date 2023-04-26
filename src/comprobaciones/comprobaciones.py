@@ -5,7 +5,7 @@ from src.exc.Exceptions import *
 
 def detNoNulo(A: list): #verificar que la matriz de entrada tenga determinante distinto del nulo
     if det_matriz(A)==0:
-        raise ExceptionDet('Error: el determinante de la matriz de coeficientes no puede ser nula.')
+        raise ExceptionDetZero('Error: el determinante de la matriz de coeficientes no puede ser nula.')
 
 
 def esReal(a):

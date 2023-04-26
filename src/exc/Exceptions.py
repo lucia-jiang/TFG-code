@@ -1,5 +1,8 @@
 class ExceptionInput(Exception):
     pass
 
-class ExceptionDet(Exception):
+class ExceptionDetZero(Exception):
+    pass
+
+class ExceptionNotANumber(Exception):
     pass
