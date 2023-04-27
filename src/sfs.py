@@ -33,7 +33,8 @@ def autovalorComplejo(aVect):
     return [sol1, sol2]
 
 
-def sfs(a, b, c, d):
+def sfs(a, b, c, d, solExplicita):
+    """El último parámetro se utiliza para devolver los pasos al método de solución explícita"""
     A = comprobarCoeficientes(a, b, c, d)
     pasos = [getPasoMatriz(A, "Esta es la matriz de coeficientes")]
 
@@ -68,4 +69,4 @@ def sfs(a, b, c, d):
         pasos.append(getPasoSFSMatrices(res,
                                         "Como los autovalores son complejos, el Sistema Fundamental de Soluciones es:"))
 
-    return Pasos(pasos).toJson()
+    return (pasos, res) if solExplicita else Pasos(pasos).toJson()
