@@ -1,5 +1,5 @@
 from sympyfunctions import *
-from aux import *
+from .aux import *
 def c_p_a_real_distinto(autovec):
     # TODO: planos de fase
     # TODO: explicación

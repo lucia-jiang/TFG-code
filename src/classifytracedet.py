@@ -1,5 +1,5 @@
-from sympyfunctions import *
-from aux import *
+from .sympyfunctions import *
+from .aux import *
 
 '''------------------CLASIFICAR PUNTO POR TRAZA Y DETERMINANTE----------------'''
 def clasificar_traza(a,b,c,d):

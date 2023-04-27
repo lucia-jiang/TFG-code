@@ -1,4 +1,4 @@
-from src.resp.obj.Paso import Paso
+from .Paso import Paso
 
 class Pasos:
     def __init__(self, pasos: list[Paso]):

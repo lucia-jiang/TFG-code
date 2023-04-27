@@ -2,7 +2,7 @@
 
 '''----------------PRUEBAS------------'''
 from src.explicitSFS import sol_explicita
-from src.sfs import sfs
+from .sfs import sfs
 
 '''SOLUCIÓN EXPLÍCITA'''
 '''Falta especificar los resp'''
