@@ -17,7 +17,16 @@ def matrix2latex(matrix) -> str:
         res = res[:-3] + '\\\\\n'
     return res[:-3] + "\n\\end{pmatrix}"
 
-
+def vector2latex(vector) -> str:
+    """
+    Crea un string que representa el vector en un fichero latex
+    :param vector: vector en formato lista
+    :return: vector en formato LáTeX
+    """
+    res = "\\begin{pmatrix}\n"
+    for elem in vector:
+        res += latexify(elem) + '\\\\\n'
+    return res[:-3] + "\n\\end{pmatrix}"
 def getPasoMatriz(item, descripcion: str) -> Paso:
     item = item.tolist()
     paso = str(item)
@@ -52,7 +61,8 @@ def getPasoAutovaloresComplejos(item, descripcion: str) -> Paso:
 def getPasoSolExplicita(sol1, sol2, descripcion: str) -> Paso:
     c1, c2 = sy.symbols('c1, c2')
     paso = 'c1 * ' + str(sol1) + ' + c2 * ' + str(sol2)
-    pasoLatex = latexify(c1) + latexify(sol1) + latexify(c2) + latexify(sol2)
+
+    pasoLatex = latexify(c1) + vector2latex(list(sol1)) + latexify(c2) + vector2latex(list(sol2))
     return Paso(paso, pasoLatex, descripcion)
 
 

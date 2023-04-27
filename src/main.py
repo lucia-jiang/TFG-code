@@ -17,6 +17,19 @@ http://127.0.0.1:5000/ecsdif/sist/sfs/2&0&3&2
 http://127.0.0.1:5000/ecsdif/sist/sfs/3&2&0&3
 """
 
+"""
+RUTAS PARA PROBAR: SOLUCIÓN EXPLÍCITA
+http://127.0.0.1:5000/ecsdif/sist/sfs/explicit/1&3&1&-1
+http://127.0.0.1:5000/ecsdif/sist/sfs/explicit/1&1&1&1
+http://127.0.0.1:5000/ecsdif/sist/sfs/explicit/-1&0&0&2
+http://127.0.0.1:5000/ecsdif/sist/sfs/explicit/0&1&-1&0 
+http://127.0.0.1:5000/ecsdif/sist/sfs/explicit/2&1&-1&2
+http://127.0.0.1:5000/ecsdif/sist/sfs/explicit/2&0&0&2
+http://127.0.0.1:5000/ecsdif/sist/sfs/explicit/1&0&0&1
+http://127.0.0.1:5000/ecsdif/sist/sfs/explicit/2&0&3&2
+http://127.0.0.1:5000/ecsdif/sist/sfs/explicit/3&2&0&3
+"""
+
 '''SOLUCIÓN EXPLÍCITA'''
 '''Falta especificar los resp'''
 # sol_explicita(1,3,1,-1) #ejemplo de la documentación
