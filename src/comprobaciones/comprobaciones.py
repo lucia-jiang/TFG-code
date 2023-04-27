@@ -1,7 +1,6 @@
 import numpy as np
-
-from src.sympyfunctions import *
-from src.exc.Exceptions import *
+from ..sympyfunctions import *
+from ..exc.Exceptions import *
 
 def detNoNulo(A: list): #verificar que la matriz de entrada tenga determinante distinto del nulo
     if det_matriz(A)==0:
