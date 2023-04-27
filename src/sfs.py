@@ -1,6 +1,6 @@
-from src.comprobaciones.comprobaciones import *
-from src.resp.obj.Pasos import Pasos
-from sympyfunctions import *
+from .comprobaciones.comprobaciones import *
+from .resp.obj.Pasos import Pasos
+from .sympyfunctions import *
 import sympyfunctions as sf
 import resp.definirPasos as resp
 
