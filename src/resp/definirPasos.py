@@ -54,3 +54,5 @@ def getPasoSolExplicita(sol1, sol2, descripcion: str) -> Paso:
     paso = 'c1 * ' + str(sol1) + ' + c2 * ' + str(sol2)
     pasoLatex = latexify(c1) + latexify(sol1) + latexify(c2) + latexify(sol2)
     return Paso(paso, pasoLatex, descripcion)
+
+

@@ -32,7 +32,7 @@ http://127.0.0.1:5000/ecsdif/sist/sfs/3&2&0&3
 # sol_explicita(3,2,0,3) #autovalor real repetido
 
 # SEGUNDO ORDEN PASADO A SISTEMA
-# segundo_orden(1,-2,-3)
+# transf_segundo_orden(1,-2,-3)
 
 '''CLASIFICAR PUNTO DE EQUILIBRIO (0,0) POR AUTOVALORES'''
 '''Falta especificar los resp'''
