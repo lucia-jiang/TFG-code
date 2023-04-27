@@ -1,5 +1,6 @@
 from .Paso import Paso
 
+
 class Pasos:
     def __init__(self, pasos: list[Paso]):
         self.pasos = pasos

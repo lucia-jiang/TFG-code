@@ -4,6 +4,19 @@
 from src.explicitSFS import sol_explicita
 from .sfs import sfs
 
+"""
+RUTAS PARA PROBAR: SFS
+http://127.0.0.1:5000/ecsdif/sist/sfs/1&3&1&-1
+http://127.0.0.1:5000/ecsdif/sist/sfs/1&1&1&1
+http://127.0.0.1:5000/ecsdif/sist/sfs/-1&0&0&2
+http://127.0.0.1:5000/ecsdif/sist/sfs/0&1&-1&0 
+http://127.0.0.1:5000/ecsdif/sist/sfs/2&1&-1&2
+http://127.0.0.1:5000/ecsdif/sist/sfs/2&0&0&2
+http://127.0.0.1:5000/ecsdif/sist/sfs/1&0&0&1
+http://127.0.0.1:5000/ecsdif/sist/sfs/2&0&3&2
+http://127.0.0.1:5000/ecsdif/sist/sfs/3&2&0&3
+"""
+
 '''SOLUCIÓN EXPLÍCITA'''
 '''Falta especificar los resp'''
 # sol_explicita(1,3,1,-1) #ejemplo de la documentación
@@ -63,7 +76,7 @@ from .sfs import sfs
 # sfs(1,3,1,-1) #ejemplo de la documentación
 # sfs(1,1,1,1) #ejemplo determinante nulo
 # sfs(-1,0,0,-2) #punto estable
-sfs(1,0,0,2) #punto inestable
+sfs(1, 0, 0, 2)  # punto inestable
 # sfs(0,1,-1,0) #autovalores complejos puro
 # sfs(2,1,-1,2) #autovalores complejos mixto
 # sfs(-2,1,-1,-2) #autovalores complejos mixo
