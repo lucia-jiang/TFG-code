@@ -35,6 +35,7 @@ def comprobarCoeficientes(a, b, c, d):
     return np.matrix(A)
 
 def string2float(frac_str):
+    """Transforma un string en float, si es posible. Las fracciones se pasan como a/b"""
     try:
         return float(frac_str)
     except ValueError:
