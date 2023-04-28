@@ -65,8 +65,10 @@ def getPasoSFSMatrices(item, descripcion: str) -> Paso:
     pasoLatex = '\\left\\{'
     for i in item:
         i = i.tolist()
-        paso = paso + ', ' + str(i)
-        pasoLatex = pasoLatex + ', ' + matrix2latex(i)
+        paso = paso + str(i) + ', '
+        pasoLatex = pasoLatex + matrix2latex(i) + ', '
+    paso = paso[:-2]
+    pasoLatex = pasoLatex[:-2] + '\\right\\}'
     return Paso(paso, pasoLatex, descripcion)
 
 
