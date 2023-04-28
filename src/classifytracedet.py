@@ -7,44 +7,51 @@ from .resp.obj.Pasos import Pasos
 
 
 def clasif_complejos(T, disc):
+    """
+    Clasificación para cuando los autovalores son complejos
+    :param T: traza
+    :param disc: discriminante
+    :return: pasos
+    """
     pasos = [getPaso(disc, "El discriminante es {} < 0. Por lo que sabemos que los autovalores son complejos".format(
         round(disc, 3)))]
     signo = "menor que" if T < 0 else ("mayor que" if T > 0 else "igual a")
     tipo = "foco estable" if T < 0 else ("foco inestable" if T > 0 else "centro estable")
     pasos.append(
         getPaso(T, "Como el determinante T {} es {} 0, el punto (0,0) es un {}".format(round(T, 3), signo, tipo)))
-    # if T < 0:
-    #     print('El punto (0,0) es un foco estable')
-    # elif T > 0:
-    #     print('El punto (0,0) es un foco inestable')
-    # else:  # T=0
-    #     print('El punto (0,0) es un centro estable')
     return pasos
 
 
 def clasif_reales_distintos(T, D, disc):
+    """
+    Clasificación para cuando los autovalores son reales y distintos
+    :param T: traza
+    :param D: determinante
+    :param disc: discriminante
+    :return: pasos
+    """
     pasos = [getPaso(disc,
                      "El discriminante es {} > 0. Por lo que sabemos que los autovalores son reales y diferentes".format(
                          round(disc, 3)))]
     signo = "el determinante es menor que 0" if D < 0 else (
         "el determinante y la traza son mayores que 0" if T > 0 else "el determinante es mayor que 0 y la traza negativa")
-    tipo = "el determinante es menor que 0" if D < 0 else (
-        "el determinante y la traza son mayores que 0" if T > 0 else "el determinante es mayor que 0 y la traza negativa")
-    pasos.append("Como {}, el punto (0,0) es un {}.".format(signo, tipo))
-    # if D < 0:
-    #     print('El punto (0,0) es un punto de silla')
-    # elif T > 0 and D > 0:
-    #     print('El punto (0,0) es un punto inestable')
-    # elif T < 0 and D > 0:
-    #     print('El punto (0,0) es un punto estable')
-    # elif D == 0 and T != 0:
-    #     print('Un autovalor 0')
-    # elif D == 0 and T == 0:
-    #     print('Los dos autovalores 0')
+    tipo = "punto de silla" if D < 0 else (
+        "punto inestable" if T > 0 else "punto estable")
+    pasos.append(Paso('T={}, D={}'.format(T, D), 'T={}, D={}'.format(T, D),
+                      "Como {}, el punto (0,0) es un {}.".format(signo, tipo)))
     return pasos
 
 
 def clasif_reales_iguales(T, disc, b, c, A):
+    """
+    Clasificación para cuando los autovalores son reales e iguales
+    :param T: traza
+    :param disc: discriminante
+    :param b: coeficiente fila 1 columna 2
+    :param c: coeficiente fila 2 columna 1
+    :param A: matriz
+    :return: pasos
+    """
     pasos = [
         getPaso(disc, "El discriminante es {} = 0. Por lo que sabemos que los autovalores son reales e iguales".format(
             round(disc, 3))),
@@ -59,13 +66,12 @@ def clasif_reales_iguales(T, disc, b, c, A):
         cond_c = "c!=0" if c != 0 else ""
         cond = cond_b + ' y ' if b != 0 and c != 0 else '' + cond_c
         tipo = "inestable" if T > 0 else "estable"
-        pasos.append(Paso('b = 0, c = 0', 'b = 0, c = 0',
+        paso = cond.replace(' y ', ', ')
+        pasoLatex = cond.replace('!=', '\\neq')
+        Tsigno = str(T) + '>0' if T > 0 else '<0'
+        pasos.append(Paso(paso, pasoLatex,
                           "Como {} la matriz no es diagonalizable, y puesto que T = {}, el punto (0,0) es un nodo impropio {}".format(
-                              cond, T, tipo)))
-        # if T > 0:
-        #     print('El punto (0,0) es un nodo impropio inestable')
-        # else:  # autoval < 0
-        #     print('El punto (0,0) es un nodo impropio estable')
+                              cond, Tsigno, tipo)))
     return pasos
 
 
