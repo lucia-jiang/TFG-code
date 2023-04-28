@@ -61,16 +61,11 @@ def sfs(a, b, c, d, finished):
                 pasos.append(getPasoSFSMatrices(res,
                                                 "Como el autovalor es doble y la matriz no es diagonalizable, el Sistema Fundamental de Soluciones es:"))
     else:  # complejo
-        print('entra')
-        print(aVal.keys())
         keys = [str(s).replace('*I', 'j').replace(' ', '') for s in list(aVal.keys())]
-        print(keys)
         keys = [complex(s) for s in keys]
-        print('keys', keys)
         pasos.append(getPasoAutovaloresComplejos(keys,
                                                  "Hallamos los autovalores asociados al sistema y buscamos el Sistema Fundamental de Soluciones"))
         res = autovalorComplejo(aVect)
-        print('res', res)
         pasos.append(getPasoSFSMatrices(res,
                                         "Como los autovalores son complejos, el Sistema Fundamental de Soluciones es:"))
 

@@ -35,7 +35,6 @@ RUTAS PARA PROBAR: TRANSFORMAR SEGUNDO ORDEN
 http://127.0.0.1:5000/ecsdif/second_order/transform/0&3&1
 http://127.0.0.1:5000/ecsdif/second_order/transform/1&3&1
 http://127.0.0.1:5000/ecsdif/second_order/transform/-1&4&0
-http://127.0.0.1:5000/ecsdif/second_order/transform/0&1&5 
 http://127.0.0.1:5000/ecsdif/second_order/transform/2&1&-1
 """
 
@@ -44,7 +43,6 @@ RUTAS PARA PROBAR: RESOLVER SEGUNDO ORDEN
 http://127.0.0.1:5000/ecsdif/second_order/solve/0&3&1
 http://127.0.0.1:5000/ecsdif/second_order/solve/1&3&1
 http://127.0.0.1:5000/ecsdif/second_order/solve/-1&4&0
-http://127.0.0.1:5000/ecsdif/second_order/solve/0&1&5 
 http://127.0.0.1:5000/ecsdif/second_order/solve/2&1&-1
 """
 

@@ -17,7 +17,8 @@ def segundo_orden(a, b, c, solve: bool):
     x, y = sy.symbols('x, y')
     pasos = [Paso('x\'=y', 'x\'=y', "Introducimos el siguiente cambio de variable"),
              Paso('x\' = y, y\' = -(c/a)x-(b/a)y', 'x\' = y, \n y\' = ' + latexify(-(c / a) * x - (b / a) * y),
-                   "Entonces x\'\'=y\' y despejando obtenemos el sistema:")]
+                  "Entonces x\'\'=y\' y despejando obtenemos el sistema:")]
     if solve:
-        pasos = pasos + sol_explicita(0, 1, -c / a, -b / a, True)
+        pasos = pasos + sol_explicita(0, 1, -c / a, -b / a, False)
     return Pasos(pasos).toJson()
+
