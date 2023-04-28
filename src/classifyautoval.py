@@ -1,4 +1,4 @@
-from .aux import *
+from .sympyfunctions import re, autovalores, autovectores, det_matriz
 from .comprobaciones.comprobaciones import comprobarCoeficientes, esReal, matrizDiagonalizable
 from .resp.definirPasos import getPasoMatriz, getPaso
 from .resp.obj.Pasos import Pasos
@@ -18,7 +18,8 @@ def c_p_a_real_distinto(aVect) -> Pasos:
         signo, tipo = "negativos", "punto estable"
     else:
         signo, tipo = "positivos", "punto inestable"
-    pasos = getPaso([aVal1, aVal2],"Como los dos autovalores son reales y {}, el punto (0,0) es un {}".format(signo, tipo))
+    pasos = getPaso([aVal1, aVal2],
+                    "Como los dos autovalores son reales y {}, el punto (0,0) es un {}".format(signo, tipo))
     return pasos
 
 
@@ -35,12 +36,6 @@ def c_p_a_complejo(aVect) -> list[Pasos]:
     pasos = [getPaso(aVal, "Como los autovalores son complejos nos fijamos en la parte real"),
              getPaso(alpha, "Como la parte real es {} cero, el punto (0,0) es un {}".format(signo, tipo))]
 
-    # if alpha < 0:
-    #     pasos.append(getPaso(alpha, "Como la parte real es menor que cero, el punto (0,0) es un foco estable"))
-    # elif alpha > 0:
-    #     pasos.append(getPaso(alpha, "Como la parte real es mayor que cero, el punto (0,0) es un foco inestable"))
-    # else:  # alpha=0
-    #     pasos.append(getPaso(alpha, "Como la parte real es igual a cero, el punto (0,0) es un centro estable"))
     return pasos
 
 
@@ -75,7 +70,7 @@ def c_p_a_doble_no_diag(aVal):
 # Los autovectores pintan los ejes
 def clasificar_punto_autoval(a, b, c, d):
     """
-    Indica el tipo de punto de equilibrio que es el origen
+    Indica el tipo de punto de equilibrio que es el origen en función de cómo es el autovalor
     :param a: coeficiente 1ª fila 1ª columna
     :param b: coeficiente 1ª fila 2ª columna
     :param c: coeficiente 2ª fila 1ª columna
