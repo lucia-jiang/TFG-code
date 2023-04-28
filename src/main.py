@@ -78,3 +78,13 @@ http://127.0.0.1:5000/ecsdif/classify/trace-det/2&0&3&2 -> nodo impropio inestab
 http://127.0.0.1:5000/ecsdif/classify/trace-det/-2&0&-3&-2 -> nodo impropio estable
 """
 
+"""
+RUTAS PARA PROBAR: CONJUGACIONES TOPOLÓGICAS
+/topological-conjugacy/<a1>&<b1>&<c1>&<d>1&<a2>&<b2>&<c2>&<d2>
+http://127.0.0.1:5000/ecsdif/topological-conjugacy/1&3&1&-1&1&3&1&-1
+http://127.0.0.1:5000/ecsdif/topological-conjugacy/1&1&1&1&1&3&1&-1
+http://127.0.0.1:5000/ecsdif/topological-conjugacy/-1&0&0&-2
+http://127.0.0.1:5000/ecsdif/topological-conjugacy/1&0&0&2
+http://127.0.0.1:5000/ecsdif/topological-conjugacy/0&1&-1&0
+"""
+
