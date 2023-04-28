@@ -12,8 +12,15 @@ from .resp.obj.Pasos import Pasos
 # ax''+bx'+cx = 0
 # Transformamos en  x' = y
 #                   y' = -(c/a)x-(b/a)y
-def segundo_orden(a, b, c, solve: bool):
-    """Transforma una ecuación de segundo grado en un sistema de dos ecuaciones de primer orden"""
+def segundo_orden(a: float, b: float, c: float, solve: bool):
+    """
+    Transforma una ecuación de segundo grado en un sistema de dos ecuaciones de primer orden
+    :param a: coeficiente acompañando al término x''
+    :param b: coeficiente acompañando al término x'
+    :param c: coeficiente acompañando al término x
+    :param solve: True si se quiere resolver el sistema
+    :return: JSON con pasos
+    """
     x, y = sy.symbols('x, y')
     pasos = [Paso('x\'=y', 'x\'=y', "Introducimos el siguiente cambio de variable"),
              Paso('x\' = y, y\' = -(c/a)x-(b/a)y', 'x\' = y, \n y\' = ' + latexify(-(c / a) * x - (b / a) * y),
@@ -21,4 +28,3 @@ def segundo_orden(a, b, c, solve: bool):
     if solve:
         pasos = pasos + sol_explicita(0, 1, -c / a, -b / a, False)
     return Pasos(pasos).toJson()
-

@@ -26,7 +26,7 @@ def exp(a):
 
 
 # Obtener la parte imaginaria de un número
-def parte_imaginaria(compl):
+def im(compl):
     return sy.im(compl)
 
 

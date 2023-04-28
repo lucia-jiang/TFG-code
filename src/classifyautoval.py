@@ -1,37 +1,78 @@
-from sympyfunctions import *
 from .aux import *
+from .comprobaciones.comprobaciones import comprobarCoeficientes, esReal, matrizDiagonalizable
+from .resp.definirPasos import getPasoMatriz, getPaso
+from .resp.obj.Pasos import Pasos
 
 
-def c_p_a_real_distinto(autovec):
-    # TODO: planos de fase
-    # TODO: explicación
-    if (autovec[0][0] < 0 and autovec[1][0] > 0) or (autovec[0][0] > 0 and autovec[1][0] < 0):
-        print('El punto (0,0) es un punto de silla')
-    elif autovec[0][0] < 0 and autovec[1][0] < 0:
-        print('El punto (0,0) es un punto estable')
-    elif autovec[0][0] > 0 and autovec[1][0] > 0:
-        print('El punto (0,0) es un punto inestable')
-    return 0
+def c_p_a_real_distinto(aVect) -> Pasos:
+    """
+    Clasificación del punto de equilibrio cuando los autovalores son reales y distintos
+    :param aVect: autovalores, multiplicidad y autovectores
+    :return: paso
+    """
+    aVal1 = aVect[0][0]
+    aVal2 = aVect[1][0]
+    signo, tipo = "de diferente signo", "punto de silla" if (aVal1 < 0 < aVal2) or (aVal1 > 0 > aVal2) else (
+    "negativos", "punto estable" if aVal1 < 0 and aVal2 < 0 else "positivos", "punto inestable")
+    # tipo = "punto de silla" if (aVal1 < 0 < aVal2) or (aVal1 > 0 > aVal2) else ("punto estable" if aVal1 < 0 and aVal2 < 0 else "punto inestable")
+    # if (aVal1 < 0 < aVal2) or (aVal1 > 0 > aVal2):
+    #     pasos = getPaso([aVal1, aVal2],
+    #                     "Como los dos autovalores son reales y de diferente signo, el punto (0,0) es un punto de silla")
+    # elif aVal1 < 0 and aVal2 < 0:
+    #     pasos = getPaso([aVal1, aVal2],
+    #                     "Como los dos autovalores son reales y negativos, el punto (0,0) es un punto estable")
+    # elif aVal1 > 0 and aVal2 > 0:
+    #     pasos = getPaso([aVal1, aVal2],
+    #                     "Como los dos autovalores son reales y positivos, el punto (0,0) es un punto inestable")
+    pasos = getPaso([aVal1, aVal2],"Como los dos autovalores son reales y {}, el punto (0,0) es un {}".format(signo, tipo))
+    return pasos
 
 
-def c_p_a_complejo(autovec):
-    alpha = parte_real(autovec[0][0])
-    if alpha < 0:
-        print('El punto (0,0) es un foco estable')
-    elif alpha > 0:
-        print('El punto (0,0) es un foco inestable')
-    else:  # alpha=0
-        print('El punto (0,0) es un centro estable')
+def c_p_a_complejo(aVect) -> list[Pasos]:
+    """
+    Clasificación del punto de equilibrio cuando los autovalores son complejos (y distintos)
+    :param aVect: autovalores, multiplicidad y autovectores
+    :return: paso
+    """
+    aVal = aVect[0][0]
+    alpha = re(aVal)
+    signo = "menor que" if alpha < 0 else ("mayor que" if alpha > 0 else "igual a")
+    tipo = "foco estable" if alpha < 0 else ("foco inestable" if alpha > 0 else "centro estable")
+    pasos = [getPaso(aVal, "Como los autovalores son complejos nos fijamos en la parte real"),
+             getPaso(alpha, "Como la parte real es {} cero, el punto (0,0) es un {}".format(signo, tipo))]
+
+    # if alpha < 0:
+    #     pasos.append(getPaso(alpha, "Como la parte real es menor que cero, el punto (0,0) es un foco estable"))
+    # elif alpha > 0:
+    #     pasos.append(getPaso(alpha, "Como la parte real es mayor que cero, el punto (0,0) es un foco inestable"))
+    # else:  # alpha=0
+    #     pasos.append(getPaso(alpha, "Como la parte real es igual a cero, el punto (0,0) es un centro estable"))
+    return pasos
 
 
-def c_p_a_doble(autoval, b, c):  # esto no está en los apuntes impresos, en los apuntes de Ec. Diferenciales
-    if b == 0 and c == 0:
-        print('El punto (0,0) es un punto estelar')  # autovalor > 0 -> se alejan del origen y vicerversa
-    else:
-        if autoval > 0:
-            print('El punto (0,0) es un nodo impropio inestable')
-        else:  # autoval < 0
-            print('El punto (0,0) es un nodo impropio estable')
+def c_p_a_doble_diag(aVal):
+    """
+    Clasificación del punto de equilibrio cuando los autovalores iguales y la matriz diagonalizable
+    :param aVect: autovalores, multiplicidad y autovectores
+    :return: paso
+    """
+    pasos = getPaso(aVal,
+                    "Como el autovalor es doble y la matriz es diagonalizable, el punto (0,0) es un punto estelar")
+    return pasos
+
+
+def c_p_a_doble_no_diag(aVal):
+    """
+    Clasificación del punto de equilibrio cuando los autovalores son iguales y la matriz no es diagonalizable
+    :param aVect: autovalores, multiplicidad y autovectores
+    :return: paso
+    """
+    signo = "positivo" if aVal > 0 else "negativo"
+    tipo = "inestable" if aVal > 0 else "estable"
+    pasos = getPaso(aVal,
+                    "Como el autovalor es doble, la matriz no es diagonalizable y el autovalor {} es {}, el punto (0,0) es un nodo impropio {}".format(
+                        aVal, signo, tipo))
+    return pasos
 
 
 '''-----------------------------------------------------'''
@@ -39,19 +80,37 @@ def c_p_a_doble(autoval, b, c):  # esto no está en los apuntes impresos, en los
 
 # Los autovectores pintan los ejes
 def clasificar_punto_autoval(a, b, c, d):
-    A = [[a, b], [c, d]]
-    autovec = autovectores(A)
-    if detNoNulo(A):  # si uno no es complejo, entonces los dos son reales
-        det = det_matriz(A)
-        # print(autovec[0][0])
-        # print(autovec[1][0])
-        print('Como el det(A) = {}, existe un único punto de equilibrio, el origen (0,0)'.format(det))
-        print('Estudiemos de qué tipo es')
-        if parte_imaginaria(autovec[0][0]) == 0:
-            if len(autovec) == 2:  # dos autovalores
-                c_p_a_real_distinto(autovec)
-            else:  # autovalor repetido
-                c_p_a_doble(autovec[0][0], b, c)
-        else:  # autovalores complejos
-            c_p_a_complejo(autovec)
-    return 0
+    """
+    Indica el tipo de punto de equilibrio que es el origen
+    :param a: coeficiente 1ª fila 1ª columna
+    :param b: coeficiente 1ª fila 2ª columna
+    :param c: coeficiente 2ª fila 1ª columna
+    :param d: coeficiente 2ª fila 2ª columna
+    :return: JSON
+    """
+    A = comprobarCoeficientes(a, b, c, d)
+
+    det = det_matriz(A)
+    pasos = [getPasoMatriz(A, "Esta es la matriz de coeficientes"),
+             getPaso(det, "Como el determinante es {}, el único punto de equilibrio es el origen (0,0)".format(det))]
+
+    aVal = autovalores(A)
+    aVect = autovectores(A)
+    aVal1 = next(iter(aVal))  # primer autovalor
+
+    keys = list(aVal.keys())
+
+    if esReal(aVal1):  # real
+        pasos.append(getPaso(keys,
+                             "Hallamos los autovalores asociados al sistema"))
+        if aVal[aVal1] == 1:  # autovalor simple
+            pasos.append(c_p_a_real_distinto(aVect))
+        else:  # autovalor doble
+            if matrizDiagonalizable(aVect):  # autovalor doble diagonalizable
+                pasos.append(c_p_a_doble_diag(aVal))
+            else:  # autovalor doble, no diagonalizable
+                pasos.append(c_p_a_doble_no_diag(aVal))
+    else:  # complejo
+        pasos = pasos + c_p_a_complejo(aVect)
+
+    return pasos

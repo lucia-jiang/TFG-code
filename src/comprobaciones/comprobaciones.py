@@ -9,7 +9,7 @@ def detNoNulo(A: list):  # verificar que la matriz de entrada tenga determinante
 
 
 def esReal(a):
-    return parte_imaginaria(a) == 0
+    return re(a) == 0
 
 
 def matrizDiagonalizable(autoVec):
