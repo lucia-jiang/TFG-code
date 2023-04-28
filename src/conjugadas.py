@@ -1,6 +1,6 @@
 from latexifier import latexify
 
-from src.resp.obj.Paso import Paso
+from .resp.obj.Paso import Paso
 from .resp.obj.Pasos import Pasos
 from .sympyfunctions import Matrix, autovalores, re
 
