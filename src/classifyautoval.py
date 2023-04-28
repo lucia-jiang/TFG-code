@@ -12,18 +12,12 @@ def c_p_a_real_distinto(aVect) -> Pasos:
     """
     aVal1 = aVect[0][0]
     aVal2 = aVect[1][0]
-    signo, tipo = "de diferente signo", "punto de silla" if (aVal1 < 0 < aVal2) or (aVal1 > 0 > aVal2) else (
-    "negativos", "punto estable" if aVal1 < 0 and aVal2 < 0 else "positivos", "punto inestable")
-    # tipo = "punto de silla" if (aVal1 < 0 < aVal2) or (aVal1 > 0 > aVal2) else ("punto estable" if aVal1 < 0 and aVal2 < 0 else "punto inestable")
-    # if (aVal1 < 0 < aVal2) or (aVal1 > 0 > aVal2):
-    #     pasos = getPaso([aVal1, aVal2],
-    #                     "Como los dos autovalores son reales y de diferente signo, el punto (0,0) es un punto de silla")
-    # elif aVal1 < 0 and aVal2 < 0:
-    #     pasos = getPaso([aVal1, aVal2],
-    #                     "Como los dos autovalores son reales y negativos, el punto (0,0) es un punto estable")
-    # elif aVal1 > 0 and aVal2 > 0:
-    #     pasos = getPaso([aVal1, aVal2],
-    #                     "Como los dos autovalores son reales y positivos, el punto (0,0) es un punto inestable")
+    if (aVal1 < 0 < aVal2) or (aVal1 > 0 > aVal2):
+        signo, tipo = "de diferente signo", "punto de silla"
+    elif aVal1 < 0 and aVal2 < 0:
+        signo, tipo = "negativos", "punto estable"
+    else:
+        signo, tipo = "positivos", "punto inestable"
     pasos = getPaso([aVal1, aVal2],"Como los dos autovalores son reales y {}, el punto (0,0) es un {}".format(signo, tipo))
     return pasos
 
@@ -97,20 +91,18 @@ def clasificar_punto_autoval(a, b, c, d):
     aVal = autovalores(A)
     aVect = autovectores(A)
     aVal1 = next(iter(aVal))  # primer autovalor
-
     keys = list(aVal.keys())
-
     if esReal(aVal1):  # real
         pasos.append(getPaso(keys,
                              "Hallamos los autovalores asociados al sistema"))
         if aVal[aVal1] == 1:  # autovalor simple
             pasos.append(c_p_a_real_distinto(aVect))
         else:  # autovalor doble
-            if matrizDiagonalizable(aVect):  # autovalor doble diagonalizable
-                pasos.append(c_p_a_doble_diag(aVal))
+            if matrizDiagonalizable(A):  # autovalor doble diagonalizable
+                pasos.append(c_p_a_doble_diag(aVal1))
             else:  # autovalor doble, no diagonalizable
-                pasos.append(c_p_a_doble_no_diag(aVal))
+                pasos.append(c_p_a_doble_no_diag(aVal1))
     else:  # complejo
         pasos = pasos + c_p_a_complejo(aVect)
 
-    return pasos
+    return Pasos(pasos).toJson()

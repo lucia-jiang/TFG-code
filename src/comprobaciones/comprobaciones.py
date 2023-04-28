@@ -9,12 +9,16 @@ def detNoNulo(A: list):  # verificar que la matriz de entrada tenga determinante
 
 
 def esReal(a):
-    return re(a) == 0
+    return im(a) == 0
 
 
-def matrizDiagonalizable(autoVec):
+def matrizDiagonalizable(A):
+    autoVec = autovectores(A)
     multiplicidad = autoVec[0][1]
     numVectores = len(autoVec[0][2])
+    if len(autoVec) > 1 and autoVec[0][0] == autoVec[1][0]:
+        multiplicidad = 2  # a veces no se da cuenta de que es el mismo autovalor
+
     return numVectores == multiplicidad
 
 

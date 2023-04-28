@@ -3,8 +3,9 @@
 # from src.resp.definirPasos import *
 
 from .comprobaciones.comprobaciones import esReal, comprobarCoeficientes, matrizDiagonalizable
+from .resp.obj.Pasos import Pasos
 from .sympyfunctions import *
-from .resp.definirPasos import getPaso, getPasoMatriz, getPasoSFSMatrices, getPasoAutovaloresComplejos, Pasos
+from .resp.definirPasos import getPaso, getPasoMatriz, getPasoSFSMatrices, getPasoAutovaloresComplejos
 
 '''Sistema fundamental de soluciones'''
 
@@ -77,8 +78,8 @@ def sfs(a, b, c, d, finished):
             res = autovaloresRealesDiagonalizable(aVect)
             pasos.append(getPasoSFSMatrices(res,
                                             "Como los autovalores son reales y distintos, el Sistema Fundamental de Soluciones es:"))
-        else: # autovalor doble
-            if matrizDiagonalizable(aVect):  # autovalor doble diagonalizable
+        else:  # autovalor doble
+            if matrizDiagonalizable(A):  # autovalor doble diagonalizable
                 res = autovaloresRealesDiagonalizable(aVect)
                 pasos.append(getPasoSFSMatrices(res,
                                                 "Como el autovalor es doble y la matriz no es diagonalizable, el Sistema Fundamental de Soluciones se calcula igual que en el caso de autovalores reales distintos:"))
