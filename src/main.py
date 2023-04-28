@@ -32,18 +32,18 @@ http://127.0.0.1:5000/ecsdif/sist/sfs/explicit/3&2&0&3
 
 """
 RUTAS PARA PROBAR: TRANSFORMAR SEGUNDO ORDEN
-http://127.0.0.1:5000/ecsdif/second_order/transform/0&3&1
-http://127.0.0.1:5000/ecsdif/second_order/transform/1&3&1
-http://127.0.0.1:5000/ecsdif/second_order/transform/-1&4&0
-http://127.0.0.1:5000/ecsdif/second_order/transform/2&1&-1
+http://127.0.0.1:5000/ecsdif/second-order/transform/0&3&1
+http://127.0.0.1:5000/ecsdif/second-order/transform/1&3&1
+http://127.0.0.1:5000/ecsdif/second-order/transform/-1&4&0
+http://127.0.0.1:5000/ecsdif/second-order/transform/2&1&-1
 """
 
 """
 RUTAS PARA PROBAR: RESOLVER SEGUNDO ORDEN
-http://127.0.0.1:5000/ecsdif/second_order/solve/0&3&1
-http://127.0.0.1:5000/ecsdif/second_order/solve/1&3&1
-http://127.0.0.1:5000/ecsdif/second_order/solve/-1&4&0
-http://127.0.0.1:5000/ecsdif/second_order/solve/2&1&-1
+http://127.0.0.1:5000/ecsdif/second-order/solve/0&3&1
+http://127.0.0.1:5000/ecsdif/second-order/solve/1&3&1
+http://127.0.0.1:5000/ecsdif/second-order/solve/-1&4&0
+http://127.0.0.1:5000/ecsdif/second-order/solve/2&1&-1
 """
 
 """
@@ -64,16 +64,16 @@ http://127.0.0.1:5000/ecsdif/classify/eigenvalues/-2&0&-3&-2 -> nodo impropio es
 """
 RUTAS PARA PROBAR: CLASIFICAR PUNTOS DE EQUILIBRIO POR TRAZA Y DETERMINANTE
 /classify/eigenvalues/<a>&<b>&<c>&<d>
-http://127.0.0.1:5000/ecsdif/classify/eigenvalues/1&3&1&-1 -> pto silla
-http://127.0.0.1:5000/ecsdif/classify/eigenvalues/1&1&1&1 -> det nulo
-http://127.0.0.1:5000/ecsdif/classify/eigenvalues/-1&0&0&-2 -> punto estable
-http://127.0.0.1:5000/ecsdif/classify/eigenvalues/1&0&0&2 -> punto inestable
-http://127.0.0.1:5000/ecsdif/classify/eigenvalues/0&1&-1&0 -> centro estable
-http://127.0.0.1:5000/ecsdif/classify/eigenvalues/2&1&-1&2 -> foco inestable
-http://127.0.0.1:5000/ecsdif/classify/eigenvalues/-2&1&-1&-2 -> foco estable
-http://127.0.0.1:5000/ecsdif/classify/eigenvalues/2&0&0&2 -> punto estelar
-http://127.0.0.1:5000/ecsdif/classify/eigenvalues/2&0&3&2 -> nodo impropio inestable
-http://127.0.0.1:5000/ecsdif/classify/eigenvalues/-2&0&-3&-2 -> nodo impropio estable
+http://127.0.0.1:5000/ecsdif/classify/trace-det/1&3&1&-1 -> pto silla
+http://127.0.0.1:5000/ecsdif/classify/trace-det/1&1&1&1 -> det nulo
+http://127.0.0.1:5000/ecsdif/classify/trace-det/-1&0&0&-2 -> punto estable
+http://127.0.0.1:5000/ecsdif/classify/trace-det/1&0&0&2 -> punto inestable
+http://127.0.0.1:5000/ecsdif/classify/trace-det/0&1&-1&0 -> centro estable
+http://127.0.0.1:5000/ecsdif/classify/trace-det/2&1&-1&2 -> foco inestable
+http://127.0.0.1:5000/ecsdif/classify/trace-det/-2&1&-1&-2 -> foco estable
+http://127.0.0.1:5000/ecsdif/classify/trace-det/2&0&0&2 -> punto estelar
+http://127.0.0.1:5000/ecsdif/classify/trace-det/2&0&3&2 -> nodo impropio inestable
+http://127.0.0.1:5000/ecsdif/classify/trace-det/-2&0&-3&-2 -> nodo impropio estable
 """
 '''SOLUCIÓN EXPLÍCITA'''
 '''Falta especificar los resp'''

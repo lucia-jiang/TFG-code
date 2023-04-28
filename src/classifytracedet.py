@@ -69,7 +69,7 @@ def clasif_reales_iguales(T, disc, b, c, A):
     return pasos
 
 
-def clasificar_traza(a, b, c, d):
+def clasificar_traza_det(a, b, c, d):
     """
     Indica el tipo de punto de equilibrio que es el origen en función de la traza y el determinante de la matriz
     :param a: coeficiente 1ª fila 1ª columna

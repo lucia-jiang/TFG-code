@@ -33,3 +33,24 @@ def comprobarCoeficientes(a, b, c, d):
     detNoNulo(A)
 
     return np.matrix(A)
+
+def string2float(frac_str):
+    try:
+        return float(frac_str)
+    except ValueError:
+        try:
+            num, denom = frac_str.split(':')
+        except ValueError:
+            return None
+        try:
+            leading, num = num.split(' ')
+        except ValueError:
+            return float(num) / float(denom)
+        try:
+            if float(leading) < 0:
+                sign_mult = -1
+            else:
+                sign_mult = 1
+        except Exception:
+            raise ExceptionNotANumber("Error: introduzca números reales")
+        return float(leading) + sign_mult * (float(num) / float(denom))
