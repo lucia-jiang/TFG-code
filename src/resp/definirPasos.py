@@ -1,6 +1,10 @@
-import sympy as sy
 from latexifier import latexify
+import plotly.graph_objects as go
+from pytexit import py2tex
+
+from .obj.Grafica import Grafica
 from .obj.Paso import Paso
+from ..sympyfunctions import symbols
 
 
 def matrix2latex(matrix) -> str:
@@ -94,8 +98,14 @@ def getPasoSolExplicita(sol1, sol2, descripcion: str) -> Paso:
     :param descripcion: explicación del paso
     :return: Paso
     """
-    c1, c2 = sy.symbols('c1, c2')
+    c1, c2 = symbols('c1, c2')
     paso = 'c1 * ' + str(sol1) + ' + c2 * ' + str(sol2)
 
     pasoLatex = latexify(c1) + vector2latex(list(sol1)) + latexify(c2) + vector2latex(list(sol2))
     return Paso(paso, pasoLatex, descripcion)
+
+
+def getResponseGraph(func: str, figure: go.Figure):
+    func = py2tex(func, tex_enclosure='', print_latex=False, print_formula=False)
+    figure = figure.to_html()
+    return Grafica(func, figure).toJson()
