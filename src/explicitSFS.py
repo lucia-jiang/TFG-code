@@ -4,8 +4,6 @@ from .resp.obj.Pasos import Pasos
 from .sfs import sfs
 from .resp.definirPasos import getPasoSolExplicita
 
-t, c1, c2, c3, x, y = symbols('t, c1, c2, c3, x, y', real=True)
-
 '''------------------EXPLÍCITAMENTE------------'''
 
 
