@@ -2,7 +2,7 @@ from latexifier import latexify
 
 from .resp.obj.Paso import Paso
 from .resp.obj.Pasos import Pasos
-from .aux.sympyfunctions import Matrix, autovalores, re
+from .aux.externalFunctions import Matrix, autovalores, re
 
 """Determina si dos sistemas son conjugados topológicamente"""
 
@@ -22,7 +22,7 @@ def countNegativeEigenValues(aVals) -> int:
     :param aVals: lista de autovalores
     :return: número de autovalores negativos
     """
-    sum(1 for i in aVals if float(i) < 0)
+    return sum(1 for i in aVals if float(i) < 0)
 
 
 def conjugates(a1: float, b1: float, c1: float, d1: float, a2: float, b2: float, c2: float, d2: float):

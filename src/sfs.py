@@ -1,4 +1,4 @@
-from .aux.sympyfunctions import symbols, exp, Matrix, re, im, cos, sen, autovalores, autovectores
+from .aux.externalFunctions import symbols, exp, Matrix, re, im, cos, sen, autovalores, autovectores
 from .comprobaciones.comprobaciones import esReal, comprobarCoeficientes, matrizDiagonalizable
 from .resp.obj.Pasos import Pasos
 from .resp.definirPasos import getPaso, getPasoMatriz, getPasoSFSMatrices, getPasoAutovaloresComplejos

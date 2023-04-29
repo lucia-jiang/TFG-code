@@ -1,4 +1,3 @@
-from .aux.sympyfunctions import symbols
 from .comprobaciones.comprobaciones import comprobarCoeficientes
 from .resp.obj.Pasos import Pasos
 from .sfs import sfs

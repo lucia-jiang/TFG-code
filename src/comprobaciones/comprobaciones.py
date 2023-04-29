@@ -1,6 +1,5 @@
-import numpy as np
-from ..aux.sympyfunctions import *
-from ..exc.Exceptions import *
+from ..aux.externalFunctions import im, autovectores, matrix, det_matriz
+from ..exc.Exceptions import ExceptionDetZero, ExceptionInput, ExceptionNotANumber
 
 
 def detNoNulo(A: list):
@@ -54,7 +53,7 @@ def comprobarCoeficientes(a, b, c, d):
     A = [[a, b], [c, d]]
     detNoNulo(A)  # Comprobación de que el determinante de la matriz no es nula.
 
-    return np.matrix(A)
+    return matrix(A)
 
 
 def string2float(frac_str):

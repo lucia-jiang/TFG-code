@@ -1,10 +1,11 @@
-from .aux.sympyfunctions import re, autovalores, autovectores, det_matriz
+from .aux.externalFunctions import re, autovalores, autovectores, det_matriz
 from .comprobaciones.comprobaciones import comprobarCoeficientes, esReal, matrizDiagonalizable
 from .resp.definirPasos import getPasoMatriz, getPaso
+from .resp.obj.Paso import Paso
 from .resp.obj.Pasos import Pasos
 
 
-def c_p_a_real_distinto(aVect) -> Pasos:
+def c_p_a_real_distinto(aVect) -> Paso:
     """
     Clasificación del punto de equilibrio cuando los autovalores son reales y distintos
     :param aVect: autovalores, multiplicidad y autovectores
@@ -23,7 +24,7 @@ def c_p_a_real_distinto(aVect) -> Pasos:
     return pasos
 
 
-def c_p_a_complejo(aVect) -> list[Pasos]:
+def c_p_a_complejo(aVect) -> list[Paso]:
     """
     Clasificación del punto de equilibrio cuando los autovalores son complejos (y distintos)
     :param aVect: autovalores, multiplicidad y autovectores
@@ -42,7 +43,7 @@ def c_p_a_complejo(aVect) -> list[Pasos]:
 def c_p_a_doble_diag(aVal):
     """
     Clasificación del punto de equilibrio cuando los autovalores iguales y la matriz diagonalizable
-    :param aVect: autovalores, multiplicidad y autovectores
+    :param aVal: autovalores, multiplicidad y autovectores
     :return: paso
     """
     pasos = getPaso(aVal,
@@ -53,7 +54,7 @@ def c_p_a_doble_diag(aVal):
 def c_p_a_doble_no_diag(aVal):
     """
     Clasificación del punto de equilibrio cuando los autovalores son iguales y la matriz no es diagonalizable
-    :param aVect: autovalores, multiplicidad y autovectores
+    :param aVal: autovalores, multiplicidad y autovectores
     :return: paso
     """
     signo = "positivo" if aVal > 0 else "negativo"

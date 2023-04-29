@@ -1,6 +1,7 @@
 import sympy as sy
+import numpy as np
 
-'''---------------------FUNCIONES QUE LLAMA SYMPY----------------'''
+'''---------------------FUNCIONES QUE LLAMAN A LIBRERÍA NUMÉRICAS  EXTERNAS----------------'''
 
 
 def det_matriz(A):
@@ -101,3 +102,12 @@ def symbols(a):
     :return: símbolos sympy
     """
     return sy.symbols(a)
+
+def matrix(A: list):
+    return np.matrix(A)
+
+def arange(inf, sup, prec):
+    return np.arange(inf, sup, prec)
+
+def meshgrid(x,y):
+    return np.meshgrid(x,y)

@@ -1,10 +1,9 @@
-import numpy as np
-
-import plotly.graph_objects as go
 import plotly.figure_factory as ff
 
 from .comprobaciones.comprobaciones import comprobarCoeficientes
 from .resp.definirPasos import getResponseGraph
+
+from .aux.externalFunctions import arange, meshgrid
 
 
 def diagramaFase(a, b, c, d, delta, xlimInf, xlimSup, ylimInf, ylimSup):
@@ -23,13 +22,13 @@ def diagramaFase(a, b, c, d, delta, xlimInf, xlimSup, ylimInf, ylimSup):
     """
     comprobarCoeficientes(a, b, c, d)
 
-    xrange = np.arange(xlimInf, xlimSup + delta, delta)
-    yrange = np.arange(ylimInf, ylimSup + delta, delta)
-    X, Y = np.meshgrid(xrange, yrange)
+    xrange = arange(xlimInf, xlimSup + delta, delta)
+    yrange = arange(ylimInf, ylimSup + delta, delta)
+    X, Y = meshgrid(xrange, yrange)
     U, V = a * X + b * Y, c * X + d * Y
 
     fig = ff.create_quiver(X, Y, U, V, line=dict(width=0.75, color='dodgerblue'))  # campo
 
     fig.show()
 
-    return getResponseGraph('x\'={a}x+{b}y, y\'={c}x+{d}y'.format(a,b,c,d), fig)
+    return getResponseGraph('x\'={}x+{}y, y\'={}x+{}y'.format(a,b,c,d), fig)
