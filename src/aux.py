@@ -1,5 +1,4 @@
-from .sympyfunctions import *
-from .exc.Exceptions import *
+from .aux.sympyfunctions import *
 
 t, c1, c2, c3, x, y = sy.symbols('t, c1, c2, c3, x, y', real=True)
 

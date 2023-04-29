@@ -1,5 +1,3 @@
-# TODO: linkear con la calculadora
-
 """----------------PRUEBAS------------"""
 
 """

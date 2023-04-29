@@ -2,15 +2,28 @@ from latexifier import latexify
 
 from .resp.obj.Paso import Paso
 from .resp.obj.Pasos import Pasos
-from .sympyfunctions import Matrix, autovalores, re
+from .aux.sympyfunctions import Matrix, autovalores, re
 
 """Determina si dos sistemas son conjugados topológicamente"""
 
+
 def notHyperbolic(aVals) -> bool:
+    """
+    Determina si una matriz es hiperbólica
+    :param aVals: lista de autovalores
+    :return: True si se encuentra algún autovalor con parte real nula
+    """
     return any(re(n) == 0 for n in aVals)
 
-def countNegativeEigenValues(aVals):
+
+def countNegativeEigenValues(aVals) -> int:
+    """
+    Cuenta el número de autovalores negativos
+    :param aVals: lista de autovalores
+    :return: número de autovalores negativos
+    """
     sum(1 for i in aVals if float(i) < 0)
+
 
 def conjugates(a1: float, b1: float, c1: float, d1: float, a2: float, b2: float, c2: float, d2: float):
     """
@@ -34,7 +47,6 @@ def conjugates(a1: float, b1: float, c1: float, d1: float, a2: float, b2: float,
     aVals1, aVals2 = list(autovalores(A1).keys()), list(autovalores(A2).keys())
     notHyperbolic1, notHyperbolic2 = notHyperbolic(aVals1), notHyperbolic(aVals2)
 
-
     paso = 'Autovalores de la primera matriz = {} \n Autovalores de la segunda matriz = {}'.format(aVals1, aVals2)
     pasoLatex = '\\text\{{Autovalores de la primera matriz : }} {} \n \\text{{Autovalores de la segunda matriz : }} {}'.format(
         latexify(aVals1), latexify(aVals2))
@@ -46,9 +58,9 @@ def conjugates(a1: float, b1: float, c1: float, d1: float, a2: float, b2: float,
                "luego los sistemas son conjugados topológicos.".format(negativos1)
     explNoConj = "Observamos que las dos matrices no tienen el mismo número de autovalores negativos." \
                  "Mientras que el primer sistema tiene {} autovalores negativos, el segundo tiene {}," \
-                 "luego los dos sistemas no son conjugados topológicos.".format(negativos1,negativos2)
+                 "luego los dos sistemas no son conjugados topológicos.".format(negativos1, negativos2)
 
-    expl = explNoHip if notHyperbolic1 or notHyperbolic2 else (explConj if negativos1==negativos2 else explNoConj)
+    expl = explNoHip if notHyperbolic1 or notHyperbolic2 else (explConj if negativos1 == negativos2 else explNoConj)
 
     pasos.append(Paso(paso, pasoLatex, expl))
 

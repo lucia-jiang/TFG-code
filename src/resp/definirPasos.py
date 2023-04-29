@@ -4,7 +4,7 @@ from pytexit import py2tex
 
 from .obj.Grafica import Grafica
 from .obj.Paso import Paso
-from ..sympyfunctions import symbols
+from src.aux.sympyfunctions import symbols
 
 
 def matrix2latex(matrix) -> str:

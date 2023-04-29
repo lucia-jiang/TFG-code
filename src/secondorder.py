@@ -8,13 +8,12 @@ from .resp.obj.Pasos import Pasos
 
 '''------------------ECUACIÓN DE SEGUNDO ORDEN----------------'''
 
-
-# ax''+bx'+cx = 0
-# Transformamos en  x' = y
-#                   y' = -(c/a)x-(b/a)y
 def segundo_orden(a: float, b: float, c: float, solve: bool):
     """
-    Transforma una ecuación de segundo grado en un sistema de dos ecuaciones de primer orden
+    Dada la ecuación: ax''+bx'+cx = 0
+    Transformamos en el sistema  x' = y
+                                 y' = -(c/a)x-(b/a)y
+
     :param a: coeficiente acompañando al término x''
     :param b: coeficiente acompañando al término x'
     :param c: coeficiente acompañando al término x

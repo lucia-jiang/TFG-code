@@ -1,10 +1,6 @@
-# from src.comprobaciones.comprobaciones import esReal, comprobarCoeficientes, matrizDiagonalizable
-# from src.sympyfunctions import *
-# from src.resp.definirPasos import *
-
+from .aux.sympyfunctions import symbols, exp, Matrix, re, im, cos, sen, autovalores, autovectores
 from .comprobaciones.comprobaciones import esReal, comprobarCoeficientes, matrizDiagonalizable
 from .resp.obj.Pasos import Pasos
-from .sympyfunctions import *
 from .resp.definirPasos import getPaso, getPasoMatriz, getPasoSFSMatrices, getPasoAutovaloresComplejos
 
 '''Sistema fundamental de soluciones'''

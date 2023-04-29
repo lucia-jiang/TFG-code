@@ -1,4 +1,4 @@
-from .sympyfunctions import re, autovalores, autovectores, det_matriz
+from .aux.sympyfunctions import re, autovalores, autovectores, det_matriz
 from .comprobaciones.comprobaciones import comprobarCoeficientes, esReal, matrizDiagonalizable
 from .resp.definirPasos import getPasoMatriz, getPaso
 from .resp.obj.Pasos import Pasos
