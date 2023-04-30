@@ -2,7 +2,7 @@ from latexifier import latexify
 
 from .resp.obj.Paso import Paso
 from .resp.obj.Pasos import Pasos
-from .aux.externalFunctions import Matrix, autovalores, re
+from .auxiliar.externalFunctions import Matrix, autovalores, re
 
 """Determina si dos sistemas son conjugados topológicamente"""
 

@@ -1,4 +1,4 @@
-from ..aux.externalFunctions import im, autovectores, matrix, det_matriz
+from ..auxiliar.externalFunctions import im, autovectores, matrix, det_matriz
 from ..exc.Exceptions import ExceptionDetZero, ExceptionInput, ExceptionNotANumber
 
 

@@ -3,7 +3,7 @@ import plotly.figure_factory as ff
 from .comprobaciones.comprobaciones import comprobarCoeficientes
 from .resp.definirPasos import getResponseGraph
 
-from .aux.externalFunctions import arange, meshgrid
+from .auxiliar.externalFunctions import arange, meshgrid
 
 
 def diagramaFase(a, b, c, d, delta, xlimInf, xlimSup, ylimInf, ylimSup):

@@ -1,4 +1,4 @@
-from .aux.externalFunctions import re, autovalores, autovectores, det_matriz
+from .auxiliar.externalFunctions import re, autovalores, autovectores, det_matriz
 from .comprobaciones.comprobaciones import comprobarCoeficientes, esReal, matrizDiagonalizable
 from .resp.definirPasos import getPasoMatriz, getPaso
 from .resp.obj.Paso import Paso
