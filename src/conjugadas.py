@@ -38,7 +38,7 @@ def conjugates(a1: float, b1: float, c1: float, d1: float, a2: float, b2: float,
     :param d2: coeficiente 2ª fila 2ª columna del segundo sistema
     :return: JSON
     """
-    paso = 'x_1\'={a}x1_+{b}y_1, y_1\'={c}x_1+{d}y_1, '.format(a=a1, b=b1, c=c1, d=d1)
+    paso = 'x_1\'={a}x_1+{b}y_1, y_1\'={c}x_1+{d}y_1, '.format(a=a1, b=b1, c=c1, d=d1)
     paso = paso + 'x_2\'={a}x_2+{b}y_2, y_2\'={c}x_2+{d}y_2'.format(a=a2, b=b2, c=c2, d=d2)
 
     pasos = [Paso(paso, paso,
@@ -48,7 +48,7 @@ def conjugates(a1: float, b1: float, c1: float, d1: float, a2: float, b2: float,
     notHyperbolic1, notHyperbolic2 = notHyperbolic(aVals1), notHyperbolic(aVals2)
 
     paso = 'Autovalores de la primera matriz = {} \n Autovalores de la segunda matriz = {}'.format(aVals1, aVals2)
-    pasoLatex = '\\text\{{Autovalores de la primera matriz : }} {} \n \\text{{Autovalores de la segunda matriz : }} {}'.format(
+    pasoLatex = '\\text{{Autovalores de la primera matriz : }} {} \\\\ \\text{{Autovalores de la segunda matriz : }} {}'.format(
         latexify(aVals1), latexify(aVals2))
 
     negativos1, negativos2 = countNegativeEigenValues(aVals1), countNegativeEigenValues(aVals2)
