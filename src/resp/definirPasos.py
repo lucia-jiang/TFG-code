@@ -106,6 +106,5 @@ def getPasoSolExplicita(sol1, sol2, descripcion: str) -> Paso:
 
 
 def getResponseGraph(func: str, figure: go.Figure):
-    func = py2tex(func, tex_enclosure='', print_latex=False, print_formula=False)
     figure = figure.to_html()
     return Grafica(func, figure).toJson()
