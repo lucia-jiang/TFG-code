@@ -6,7 +6,7 @@ from .resp.definirPasos import getResponseGraph
 from .auxiliar.externalFunctions import arange, meshgrid
 
 
-def diagramaFase(a, b, c, d, delta, xlimInf, xlimSup, ylimInf, ylimSup):
+def diagramaFase(a, b, c, d, delta, xlimInf, xlimSup, ylimInf, ylimSup, col):
     """
     Diagrama de fases
     :param a: coeficiente 1ª fila 1ª columna
@@ -18,6 +18,7 @@ def diagramaFase(a, b, c, d, delta, xlimInf, xlimSup, ylimInf, ylimSup):
     :param xlimSup: límite superior del eje de abscisas
     :param ylimInf: límite inferior del eje de ordenadas
     :param ylimSup: límite superior del eje de ordenadas
+    :param col: color de la gráfica
     :return: gráfica en html
     """
     comprobarCoeficientes(a, b, c, d)
@@ -27,8 +28,6 @@ def diagramaFase(a, b, c, d, delta, xlimInf, xlimSup, ylimInf, ylimSup):
     X, Y = meshgrid(xrange, yrange)
     U, V = a * X + b * Y, c * X + d * Y
 
-    fig = ff.create_quiver(X, Y, U, V, line=dict(width=0.75, color='dodgerblue'))  # campo
-
-    fig.show()
+    fig = ff.create_quiver(X, Y, U, V, line=dict(width=0.75, color=col))  # campo
 
     return getResponseGraph('x\'={}x+{}y, y\'={}x+{}y'.format(a,b,c,d), fig)
