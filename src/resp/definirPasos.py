@@ -101,7 +101,7 @@ def getPasoSolExplicita(sol1, sol2, descripcion: str) -> Paso:
     c1, c2 = symbols('c1, c2')
     paso = 'c1 * ' + str(sol1) + ' + c2 * ' + str(sol2)
 
-    pasoLatex = latexify(c1) + vector2latex(list(sol1)) + latexify(c2) + vector2latex(list(sol2))
+    pasoLatex = latexify(c1) + vector2latex(list(sol1)) + '+' + latexify(c2) + vector2latex(list(sol2))
     return Paso(paso, pasoLatex, descripcion)
 
 
