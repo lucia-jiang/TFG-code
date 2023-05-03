@@ -56,6 +56,15 @@ def comprobarCoeficientes(a, b, c, d):
     return matrix(A)
 
 
+def float2int(n: float):
+    """
+    Pasa un float a entero
+    :n: número n en formato float
+    :return: int si n no tiene números decimales
+    """
+    return int(n) if n.is_integer() else n
+
+
 def string2float(frac_str):
     """
     Transforma un string en float, si es posible
@@ -63,7 +72,7 @@ def string2float(frac_str):
     :return: float
     """
     try:
-        return float(frac_str)
+        return float2int(float(frac_str))
     except ValueError:
         try:
             num, denom = frac_str.split(':')

@@ -1,4 +1,4 @@
-from .comprobaciones.comprobaciones import comprobarCoeficientes
+from .comprobaciones.comprobaciones import comprobarCoeficientes, float2int
 from .resp.definirPasos import getPaso, getPasoMatriz
 from .resp.obj.Paso import Paso
 from .resp.obj.Pasos import Pasos
@@ -6,7 +6,7 @@ from .resp.obj.Pasos import Pasos
 '''------------------CLASIFICAR PUNTO POR TRAZA Y DETERMINANTE----------------'''
 
 
-def clasif_complejos(T, disc):
+def clasif_complejos(T: float, disc: float):
     """
     Clasificación para cuando los autovalores son complejos
     :param T: traza
@@ -18,11 +18,11 @@ def clasif_complejos(T, disc):
     signo = "menor que" if T < 0 else ("mayor que" if T > 0 else "igual a")
     tipo = "foco estable" if T < 0 else ("foco inestable" if T > 0 else "centro estable")
     pasos.append(
-        getPaso(T, "Como el determinante T {} es {} 0, el punto (0,0) es un {}".format(round(T, 3), signo, tipo)))
+        Paso('T={}'.format(round(T,3)), 'T={}'.format(round(T,3)), "Como el determinante T {} es {} 0, el punto (0,0) es un {}".format(round(T, 3), signo, tipo)))
     return pasos
 
 
-def clasif_reales_distintos(T, D, disc):
+def clasif_reales_distintos(T: float, D: float, disc: float):
     """
     Clasificación para cuando los autovalores son reales y distintos
     :param T: traza
@@ -42,7 +42,7 @@ def clasif_reales_distintos(T, D, disc):
     return pasos
 
 
-def clasif_reales_iguales(T, disc, b, c, A):
+def clasif_reales_iguales(T: float, disc: float, b: float, c: float, A):
     """
     Clasificación para cuando los autovalores son reales e iguales
     :param T: traza
@@ -75,7 +75,7 @@ def clasif_reales_iguales(T, disc, b, c, A):
     return pasos
 
 
-def clasificar_traza_det(a, b, c, d):
+def clasificar_traza_det(a: float, b: float, c: float, d: float):
     """
     Indica el tipo de punto de equilibrio que es el origen en función de la traza y el determinante de la matriz
     :param a: coeficiente 1ª fila 1ª columna
