@@ -65,12 +65,13 @@ def float2int(n: float):
     return int(n) if n.is_integer() else n
 
 
-def string2float(frac_str):
+def string2float(frac_str: str):
     """
     Transforma un string en float, si es posible
     :param frac_str: número a transformar, las fracciones se pasan como a:b
     :return: float
     """
+    frac_str = frac_str.replace(',','.')
     try:
         return float2int(float(frac_str))
     except ValueError:
