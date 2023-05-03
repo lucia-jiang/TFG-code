@@ -104,10 +104,25 @@ def symbols(a):
     return sy.symbols(a)
 
 def matrix(A: list):
+    """
+    :param A: lista de coeficientes
+    :return: matriz numpy
+    """
     return np.matrix(A)
 
 def arange(inf, sup, prec):
+    """
+    :param inf: punto inferior
+    :param sup: punto superior
+    :param prec: distancia de la lista
+    :return: lista repartida de numpy
+    """
     return np.arange(inf, sup, prec)
 
 def meshgrid(x,y):
+    """
+    :param x: lista eje x
+    :param y: lista eje y
+    :return: meshgrid numpy
+    """
     return np.meshgrid(x,y)
