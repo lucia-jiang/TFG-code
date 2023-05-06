@@ -106,5 +106,23 @@ def getPasoSolExplicita(sol1, sol2, descripcion: str) -> Paso:
 
 
 def getResponseGraph(func: str, figure: go.Figure):
+    """
+    Retorna una gráfica
+    :param func: función a graficar
+    :param figure: figura html
+    :return: Grafica
+    """
     figure = figure.to_html()
     return Grafica(func, figure).toJson()
+
+
+def autovalList2latex(l: list):
+    """
+    Latexifica una lista de valores
+    :param l: lista
+    :return: formato LáTeX
+    """
+    res = ''
+    for elem in l:
+        res += py2tex(str(elem)) + ', '
+    return res[:-2]

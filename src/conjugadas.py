@@ -1,5 +1,4 @@
-from latexifier import latexify
-
+from .resp.definirPasos import autovalList2latex
 from .resp.obj.Paso import Paso
 from .resp.obj.Pasos import Pasos
 from .auxiliar.externalFunctions import Matrix, autovalores, re
@@ -22,7 +21,7 @@ def countNegativeEigenValues(aVals) -> int:
     :param aVals: lista de autovalores
     :return: número de autovalores negativos
     """
-    return sum(1 for i in aVals if float(i) < 0)
+    return sum(1 for i in aVals if re(i) < 0)
 
 
 def conjugates(a1: float, b1: float, c1: float, d1: float, a2: float, b2: float, c2: float, d2: float):
@@ -42,19 +41,30 @@ def conjugates(a1: float, b1: float, c1: float, d1: float, a2: float, b2: float,
     paso = paso + 'x_2\'={a}x_2 + {b}y_2, y_2\'={c}x_2+{d}y_2'.format(a=a2, b=b2, c=c2, d=d2)
 
     pasoLatex = 'x_1\'={a}x_1+{b}y_1, \\quad y_1\'={c}x_1+{d}y_1'.format(a=a1, b=b1, c=c1, d=d1)
-    pasoLatex = pasoLatex + '\\\\' + 'x_2\'={a}x_2 + {b}y_2, y_2\'={c}x_2+{d}y_2'.format(a=a2, b=b2, c=c2, d=d2)
+    pasoLatex = pasoLatex + '\\\\' + 'x_2\'={a}x_2 + {b}y_2, \\quad y_2\'={c}x_2+{d}y_2'.format(a=a2, b=b2, c=c2, d=d2)
 
     pasos = [Paso(paso, pasoLatex,
                   "Dos sistemas son conjugados topológicamente si las matrices son hiperbólicas y tiene mismo número de autovalores negativos.")]
     A1, A2 = Matrix([[a1, b1], [c1, d1]]), Matrix([[a2, b2], [c2, d2]])
-    aVals1, aVals2 = list(autovalores(A1).keys()), list(autovalores(A2).keys())
-    notHyperbolic1, notHyperbolic2 = notHyperbolic(aVals1), notHyperbolic(aVals2)
 
-    paso = 'Autovalores de la primera matriz = {}. Autovalores de la segunda matriz = {}'.format(aVals1, aVals2)
+    aVals1, aVals2 = autovalores(A1), autovalores(A2)
+
+    l_aVals1, l_aVals2 = [], []
+    for a in aVals1.keys():
+        l_aux = [a] * aVals1[a]
+        l_aVals1 = l_aVals1 + l_aux
+
+    for a in aVals2.keys():
+        l_aux = [a] * aVals2[a]
+        l_aVals2 = l_aVals2 + l_aux
+
+    notHyperbolic1, notHyperbolic2 = notHyperbolic(l_aVals1), notHyperbolic(l_aVals2)
+
+    paso = 'Autovalores de la primera matriz = {}. Autovalores de la segunda matriz = {}'.format(l_aVals1, l_aVals2)
     pasoLatex = '\\text{{Autovalores de la primera matriz : }} {} \\\\ \\text{{Autovalores de la segunda matriz : }} {}'.format(
-        latexify(aVals1), latexify(aVals2))
+        autovalList2latex(l_aVals1), autovalList2latex(l_aVals2))
 
-    negativos1, negativos2 = countNegativeEigenValues(aVals1), countNegativeEigenValues(aVals2)
+    negativos1, negativos2 = countNegativeEigenValues(l_aVals1), countNegativeEigenValues(l_aVals2)
 
     explNoHip = "Alguna de estas matrices no es hiperbólica, luego los sistemas no son conjugados."
     explConj = "Observamos que ambas matrices tienen el mismo número de autovalores negativos: {}, " \
@@ -64,7 +74,6 @@ def conjugates(a1: float, b1: float, c1: float, d1: float, a2: float, b2: float,
                  "luego los dos sistemas no son conjugados topológicos.".format(negativos1, negativos2)
 
     expl = explNoHip if notHyperbolic1 or notHyperbolic2 else (explConj if negativos1 == negativos2 else explNoConj)
-
     pasos.append(Paso(paso, pasoLatex, expl))
 
     return Pasos(pasos).toJson()
