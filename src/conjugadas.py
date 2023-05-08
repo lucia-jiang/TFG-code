@@ -66,11 +66,11 @@ def conjugates(a1: float, b1: float, c1: float, d1: float, a2: float, b2: float,
 
     negativos1, negativos2 = countNegativeEigenValues(l_aVals1), countNegativeEigenValues(l_aVals2)
 
-    explNoHip = "Alguna de estas matrices no es hiperbólica, luego los sistemas no son conjugados."
+    explNoHip = "Alguna de estas matrices no es hiperbólica, luego los sistemas no son conjugados. "
     explConj = "Observamos que ambas matrices tienen el mismo número de autovalores negativos: {}, " \
                "luego los sistemas son conjugados topológicos.".format(negativos1)
-    explNoConj = "Observamos que las dos matrices no tienen el mismo número de autovalores negativos." \
-                 "Mientras que el primer sistema tiene {} autovalores negativos, el segundo tiene {}," \
+    explNoConj = "Observamos que las dos matrices no tienen el mismo número de autovalores negativos. " \
+                 "Mientras que el primer sistema tiene {} autovalores negativos, el segundo tiene {}, " \
                  "luego los dos sistemas no son conjugados topológicos.".format(negativos1, negativos2)
 
     expl = explNoHip if notHyperbolic1 or notHyperbolic2 else (explConj if negativos1 == negativos2 else explNoConj)
