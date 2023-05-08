@@ -71,7 +71,7 @@ def getPasoSFSMatrices(item, descripcion: str) -> Paso:
         i = i.tolist()
         paso = paso + str(i) + ', '
         pasoLatex = pasoLatex + matrix2latex(i) + ', '
-    paso = paso[:-2]
+    paso = paso[:-2] + '}'
     pasoLatex = pasoLatex[:-2] + '\\right\\}'
     return Paso(paso, pasoLatex, descripcion)
 
@@ -124,5 +124,5 @@ def autovalList2latex(l: list):
     """
     res = ''
     for elem in l:
-        res += py2tex(str(elem)) + ', '
+        res += py2tex(str(elem))[2:-2] + ', '
     return res[:-2]
