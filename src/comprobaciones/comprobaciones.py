@@ -1,4 +1,4 @@
-from ..auxiliar.externalFunctions import im, autovectores, matrix, det_matriz
+from ..auxiliar.externalFunctions import im, matrix, det_matriz, Matrix
 from ..exc.Exceptions import ExceptionDetZero, ExceptionInput, ExceptionNotANumber
 
 
@@ -23,17 +23,11 @@ def esReal(a) -> bool:
 
 def matrizDiagonalizable(A) -> bool:
     """
-    Determina si una matriz es diagonalizable. Comprueba que la multiplicidad algebraica y geométrica es igual
+    Determina si una matriz es diagonalizable
     :param A: matriz
     :return: bool
     """
-    autoVec = autovectores(A)
-    multiplicidad = autoVec[0][1]
-    numVectores = len(autoVec[0][2])
-    if len(autoVec) > 1 and autoVec[0][0] == autoVec[1][0]:
-        multiplicidad = 2  # a veces no se da cuenta de que es el mismo autovalor
-
-    return numVectores == multiplicidad
+    return Matrix(A).is_diagonalizable()
 
 
 def comprobarCoeficientes(a, b, c, d):
