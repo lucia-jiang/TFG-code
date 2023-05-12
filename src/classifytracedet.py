@@ -1,3 +1,5 @@
+from latexifier import latexify
+
 from .comprobaciones.comprobaciones import comprobarCoeficientes, float2int
 from .resp.definirPasos import getPaso, getPasoMatriz
 from .resp.obj.Paso import Paso
@@ -13,12 +15,18 @@ def clasif_complejos(T: float, disc: float):
     :param disc: discriminante
     :return: pasos
     """
-    pasos = [getPaso(disc, "El discriminante es {} < 0. Por lo que sabemos que los autovalores son complejos".format(
-        round(disc, 3)))]
+    paso = 'disc={}'.format(latexify(disc))
+    pasoLatex = '\\Delta = T^2-4D = {}'.format(latexify(disc))
+
+    pasos = [Paso(paso, pasoLatex,
+                  "El discriminante es $\\Delta = {} < 0$. Por lo que los autovalores son complejos".format(
+                      latexify(disc)))]
     signo = "menor que" if T < 0 else ("mayor que" if T > 0 else "igual a")
     tipo = "foco estable" if T < 0 else ("foco inestable" if T > 0 else "centro estable")
+    aVal = "negativa" if T < 0 else ("positiva" if T > 0 else "igual a 0")
     pasos.append(
-        Paso('T={}'.format(round(T,3)), 'T={}'.format(round(T,3)), "Como el determinante T {} es {} 0, el punto (0,0) es un {}".format(round(T, 3), signo, tipo)))
+        Paso('', '', "Como el determinante $T = {}$ es {} 0, la parte real del autovalor será {} y por tanto, \
+              el punto $(0,0)$ es un {}.".format(latexify(T), signo, aVal, tipo)))
     return pasos
 
 
@@ -30,15 +38,18 @@ def clasif_reales_distintos(T: float, D: float, disc: float):
     :param disc: discriminante
     :return: pasos
     """
-    pasos = [getPaso(disc,
-                     "El discriminante es {} > 0. Por lo que sabemos que los autovalores son reales y diferentes".format(
-                         round(disc, 3)))]
-    signo = "el determinante es menor que 0" if D < 0 else (
-        "el determinante y la traza son mayores que 0" if T > 0 else "el determinante es mayor que 0 y la traza negativa")
+    paso = 'disc={}'.format(latexify(disc))
+    pasoLatex = '\\Delta = T^2-4D = {}'.format(latexify(disc))
+    pasos = [Paso(paso, pasoLatex, "El discriminante es $\\Delta ={} > 0$. Por lo que los autovalores son reales \
+                y diferentes".format(latexify(disc)))]
+    signo = "el determinante $D={}$ es menor que 0".format(D) if D < 0 else (
+        "el determinante $D={}$ y la traza $T={}$ son mayores que 0".format(D, T) if T > 0 else
+        "el determinante $D={}$ es mayor que 0 y la traza $T={}$ negativa".format(D, T))
     tipo = "punto de silla" if D < 0 else (
         "punto inestable" if T > 0 else "punto estable")
-    pasos.append(Paso('T={}, D={}'.format(T, D), 'T={}, D={}'.format(T, D),
-                      "Como {}, el punto (0,0) es un {}.".format(signo, tipo)))
+    aVal = "de signo contrario" if D < 0 else (
+        "positivos" if T > 0 else "negativos")
+    pasos.append(Paso('', '', "Como {}, los autovalores son {}, el punto $(0,0)$ es un {}.".format(signo, aVal, tipo)))
     return pasos
 
 
@@ -52,26 +63,24 @@ def clasif_reales_iguales(T: float, disc: float, b: float, c: float, A):
     :param A: matriz
     :return: pasos
     """
+    paso = 'disc={}'.format(latexify(disc))
+    pasoLatex = '\\Delta = T^2-4D = {}'.format(latexify(disc))
     pasos = [
-        getPaso(disc, "El discriminante es {} = 0. Por lo que sabemos que los autovalores son reales e iguales".format(
-            round(disc, 3))),
+        Paso(paso, pasoLatex, "El discriminante $\\Delta {} = 0$. Por lo que los autovalores son reales e iguales."),
         getPasoMatriz(A, "Esta es la matriz de coeficientes y nos fijamos en los valores de la diagonal secundaria.")
     ]
 
     if b == 0 and c == 0:
-        pasos.append(Paso('b = 0, c = 0', 'b = 0, c = 0',
-                          "Como b=c=0, la matriz es diagonalizable y el punto (0,0) es un punto estelar"))
+        pasos.append(Paso('', '', "Como $b=c=0$, la matriz es diagonalizable y el punto $(0,0)$ es un punto estelar."))
     else:
-        cond_b = "b!=0" if b != 0 else ""
-        cond_c = "c!=0" if c != 0 else ""
-        cond = cond_b + ' y ' if b != 0 and c != 0 else '' + cond_c
+        cond_b = "$b={}\\neq 0$".format(b) if b != 0 else ""
+        cond_c = "$c={}\\neq 0$".format(c) if c != 0 else ""
+        pasoLatex = cond_b + (' y ' if b != 0 and c != 0 else '') + cond_c
         tipo = "inestable" if T > 0 else "estable"
-        paso = cond.replace(' y ', ', ')
-        pasoLatex = cond.replace('!=', '\\neq')
-        Tsigno = str(T) + '>0' if T > 0 else '<0'
-        pasos.append(Paso(paso, pasoLatex,
-                          "Como {} la matriz no es diagonalizable, y puesto que T = {}, el punto (0,0) es un nodo impropio {}".format(
-                              cond, Tsigno, tipo)))
+
+        Tsigno = '>0' if T > 0 else '<0'
+        pasos.append(Paso('', '', "Como {} la matriz no es diagonalizable, y puesto que $T = {} {}$, el punto \
+                        $(0,0)$ es un nodo impropio {}.".format(pasoLatex, T, Tsigno, tipo)))
     return pasos
 
 
@@ -88,11 +97,13 @@ def clasificar_traza_det(a: float, b: float, c: float, d: float):
     T = a + d  # traza
     D = a * d - b * c  # determinante
 
+    paso = 'T={}, D={}'.format(latexify(T), latexify(D))
+    pasoLatex = 'T={}, \\quad D={}'.format(latexify(T), latexify(D))
     pasos = [Paso('lambda = T ** 2 - 4 * D', '\\lambda = \\dfrac{T \\pm \\sqrt{T^2-4D}}{2}',
-                  "Recordemos que siendo T la traza y D el determinante, los autovalores se pueden expresar como:".format(
+                  "Recordemos que siendo $T$ la traza y $D$ el determinante, los autovalores se pueden expresar como:".format(
                       round(T, 3), round(D, 3))),
-             getPaso([T, D], "La traza y el determinante son respectivamente {} y {}".format(round(T, 3), round(D, 3)))
-             ]
+             Paso(paso, pasoLatex, "Los valores de la traza y el determinante son:")]
+
     disc = T ** 2 - 4 * D
 
     if disc < 0:

@@ -42,7 +42,7 @@ def getPasoMatriz(item, descripcion: str) -> Paso:
     """
     item = item.tolist()  # quitar el Matrix
     paso = str(item)
-    pasoLatex = matrix2latex(item)
+    pasoLatex = 'A=' + matrix2latex(item)
     return Paso(paso, pasoLatex, descripcion)
 
 
@@ -131,13 +131,14 @@ def getResponseGraph(func: str, figure: go.Figure):
     return Grafica(func, figure).toJson()
 
 
-def autovalList2latex(l: list):
+def autovalList2latex(l: list, n: int):
     """
     Latexifica una lista de valores
     :param l: lista
     :return: formato LáTeX
     """
-    res = ''
-    for elem in l:
-        res += py2tex(str(elem))[2:-2] + ', '
-    return res[:-2]
+    pasoLatex = '\\lambda_1^{}={}, \\quad '.format(n, py2tex(str(l[0]))[2:-2])
+    pasoLatex = pasoLatex + '\\lambda_2^{}={}'.format(n, py2tex(str(l[1]))[2:-2])
+    # for elem in l:
+    #     pasoLatex += py2tex(str(elem))[2:-2] + ', '
+    return pasoLatex
