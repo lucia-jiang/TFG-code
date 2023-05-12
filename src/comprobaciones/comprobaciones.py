@@ -21,13 +21,13 @@ def esReal(a) -> bool:
     return im(a) == 0
 
 
-def matrizDiagonalizable(A) -> bool:
+def matrizDiagonalizable(A: Matrix) -> bool:
     """
     Determina si una matriz es diagonalizable
     :param A: matriz
     :return: bool
     """
-    return Matrix(A).is_diagonalizable()
+    return A[0,1] == 0 and A[1,0] == 0
 
 
 def comprobarCoeficientes(a, b, c, d):

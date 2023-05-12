@@ -1,7 +1,10 @@
+from pytexit import py2tex
+
 from .auxiliar.externalFunctions import symbols, exp, Matrix, re, im, cos, sen, autovalores, autovectores
 from .comprobaciones.comprobaciones import esReal, comprobarCoeficientes, matrizDiagonalizable
 from .resp.obj.Pasos import Pasos
-from .resp.definirPasos import getPaso, getPasoMatriz, getPasoSFSMatrices, getPasoAutovaloresComplejos
+from .resp.definirPasos import getPasoMatriz, getPasoSFSMatrices, getPasoAutovaloresComplejos, \
+    getPasoAutovalores
 
 '''Sistema fundamental de soluciones'''
 
@@ -15,8 +18,8 @@ def autovaloresRealesDiagonalizable(aVect):
     :param aVect:
     :return:
     """
-    sol1 = exp(aVect[0][0] * t) * Matrix(aVect[0][2])
-    sol2 = exp(aVect[1][0] * t) * Matrix(aVect[1][2])
+    sol1 = exp(round(aVect[0][0],5) * t) * Matrix(aVect[0][2])
+    sol2 = exp(round(aVect[1][0],5) * t) * Matrix(aVect[1][2])
     return [sol1, sol2]
 
 
@@ -27,8 +30,8 @@ def autovalorNoDiagonalizable(aVect):
     :param aVect: autovector
     :return: sfs
     """
-    sol1 = exp(aVect[0][0] * t) * Matrix(aVect[0][2])
-    sol2 = exp(aVect[0][0] * t) * Matrix(aVect[0][2]) * (1 + t)
+    sol1 = exp(round(aVect[0][0],5) * t) * Matrix(aVect[0][2])
+    sol2 = exp(round(aVect[1][0],5) * t) * Matrix(aVect[0][2]) * (1 + t)
     return [sol1, sol2]
 
 
@@ -39,8 +42,8 @@ def autovalorComplejo(aVect):
     :param aVect: autovector
     :return: sfs
     """
-    p = re(aVect[0][0])
-    q = im(aVect[0][0])
+    p = round(re(aVect[0][0]), 5)
+    q = round(im(aVect[0][0]), 5)
     u = Matrix(list(map(re, aVect[0][2])))
     w = Matrix(list(map(im, aVect[0][2])))
     sol1 = exp(p * t) * (cos(q * t) * u - sen(q * t) * w)
@@ -59,7 +62,7 @@ def sfs(a, b, c, d, finished):
     :return: JSON del sfs si finished==True, si no, Pasos para hallar sfs
     """
     A = comprobarCoeficientes(a, b, c, d)
-    pasos = [getPasoMatriz(A, "Esta es la matriz de coeficientes")]
+    pasos = [getPasoMatriz(A, "La matriz de coeficientes asociado al sistema es")]
 
     aVal = autovalores(A)
     aVect = autovectores(A)
@@ -68,8 +71,8 @@ def sfs(a, b, c, d, finished):
     keys = list(aVal.keys())
 
     if esReal(aVal1):  # real
-        pasos.append(getPaso(keys,
-                             "Hallamos los autovalores asociados al sistema y buscamos el Sistema Fundamental de Soluciones"))
+        pasos.append(getPasoAutovalores(keys,
+                             "Hallamos los autovalores asociados al sistema para obtener el Sistema Fundamental de Soluciones"))
         if aVal[aVal1] == 1:  # autovalor simple
             res = autovaloresRealesDiagonalizable(aVect)
             pasos.append(getPasoSFSMatrices(res,
@@ -78,17 +81,14 @@ def sfs(a, b, c, d, finished):
             if matrizDiagonalizable(A):  # autovalor doble diagonalizable
                 res = autovaloresRealesDiagonalizable(aVect)
                 pasos.append(getPasoSFSMatrices(res,
-                                                "Como el autovalor es doble y la matriz no es diagonalizable, el Sistema Fundamental de Soluciones se calcula igual que en el caso de autovalores reales distintos:"))
+                                                "Como el autovalor es doble y la matriz es diagonalizable, el Sistema Fundamental de Soluciones se calcula igual que en el caso de autovalores reales distintos:"))
             else:  # autovalor doble, no diagonalizable
                 res = autovalorNoDiagonalizable(aVect)
                 pasos.append(getPasoSFSMatrices(res,
                                                 "Como el autovalor es doble y la matriz no es diagonalizable, el Sistema Fundamental de Soluciones es:"))
     else:  # complejo
-        # transformar número imaginario I en j
-        keys = [str(s).replace('*I', 'j').replace(' ', '') for s in list(aVal.keys())]
-        keys = [complex(s) for s in keys]
-        pasos.append(getPasoAutovaloresComplejos(keys,
-                                                 "Hallamos los autovalores asociados al sistema y buscamos el Sistema Fundamental de Soluciones"))
+        pasos.append(getPasoAutovaloresComplejos(list(aVal.keys()),
+                                                 "Hallamos los autovalores asociados al sistema para obtener el Sistema Fundamental de Soluciones"))
         res = autovalorComplejo(aVect)
         pasos.append(getPasoSFSMatrices(res,
                                         "Como los autovalores son complejos, el Sistema Fundamental de Soluciones es:"))

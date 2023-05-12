@@ -71,9 +71,23 @@ def getPasoSFSMatrices(item, descripcion: str) -> Paso:
         i = i.tolist()
         paso = paso + str(i) + ', '
         pasoLatex = pasoLatex + matrix2latex(i) + ', '
-    paso = paso[:-2] + '}'
+    paso = paso[2:-2] + '}'
     pasoLatex = pasoLatex[:-2] + '\\right\\}'
     return Paso(paso, pasoLatex, descripcion)
+
+
+def getPasoAutovalores(item, descripcion: str) -> Paso:
+    """
+    Transforma el item y la explicación en formato Paso
+    :param item: paso en formato Python
+    :param descripcion: explicación del paso
+    :return: Paso
+    """
+    if len(item) == 2:
+        pasoLatex = '\\lambda_1 = {}, \\quad \\lambda_2 = {}'.format(latexify(item[0]), latexify(item[1]))
+    else:
+        pasoLatex = '\\lambda = {} \\quad {}'.format(latexify(item[0]), '\\text{(doble)}')
+    return Paso(str(item), pasoLatex, descripcion)
 
 
 def getPasoAutovaloresComplejos(item, descripcion: str) -> Paso:
@@ -83,11 +97,12 @@ def getPasoAutovaloresComplejos(item, descripcion: str) -> Paso:
     :param descripcion: explicación del paso
     :return: Paso
     """
-    paso = str(item)
-    pasoLatex = ''
-    for i in item:
-        pasoLatex = pasoLatex + ', ' + latexify(i)
-    return Paso(paso, pasoLatex, descripcion)
+    # transformar I en 1j para que latexify entienda
+    keys = [complex(str(s).replace('*I', 'j').replace(' ', '')) for s in item]
+    autoval1 = latexify(keys[0]).replace('+ -', '-')  # fix bug de latexify
+    autoval2 = latexify(keys[1]).replace('+ -', '-')  # fix bug de latexify
+    pasoLatex = '\\lambda_1 = {}, \\quad \\lambda_2 = {}'.format(autoval1, autoval2)
+    return Paso(str(item), pasoLatex, descripcion)
 
 
 def getPasoSolExplicita(sol1, sol2, descripcion: str) -> Paso:
@@ -99,9 +114,9 @@ def getPasoSolExplicita(sol1, sol2, descripcion: str) -> Paso:
     :return: Paso
     """
     c1, c2 = symbols('c1, c2')
-    paso = 'c1 * ' + str(sol1) + ' + c2 * ' + str(sol2)
+    paso = 'X(t) = c1 * ' + str(sol1) + ' + c2 * ' + str(sol2)
 
-    pasoLatex = latexify(c1) + vector2latex(list(sol1)) + '+' + latexify(c2) + vector2latex(list(sol2))
+    pasoLatex = 'X(t)=' + latexify(c1) + vector2latex(list(sol1)) + '+' + latexify(c2) + vector2latex(list(sol2))
     return Paso(paso, pasoLatex, descripcion)
 
 
