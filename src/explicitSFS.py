@@ -23,4 +23,4 @@ def sol_explicita(a: float, b: float, c: float, d: float, finished: bool):
     pasos, sols = sistfs[0], sistfs[1]
     pasos.append(getPasoSolExplicita(sols[0], sols[1],
                                      "La solución explícita es la combinación lineal de los elementos en el Sistema Fundamental de Soluciones"))
-    return Pasos(pasos).toJson() if finished else pasos
+    return Pasos(pasos).toJson() if finished else (pasos, sols)
