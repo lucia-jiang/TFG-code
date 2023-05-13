@@ -23,15 +23,19 @@ def autovaloresRealesDiagonalizable(aVect):
     return [sol1, sol2]
 
 
-def autovalorNoDiagonalizable(aVect):
+def autovalorNoDiagonalizable(A, aVect):
     """
     El sfs es {e^{lambda*t}*u, e^{lambda*t}(1+t)u}
     siendo u el autovector asociado al autovalor lambda (doble)
     :param aVect: autovector
     :return: sfs
     """
-    sol1 = exp(round(aVect[0][0],5) * t) * Matrix(aVect[0][2])
-    sol2 = exp(round(aVect[1][0],5) * t) * Matrix(aVect[0][2]) * (1 + t)
+    # forma canónica
+    P, J = Matrix(A).jordan_form()
+    v1, v2 = P[:,0], P[:,1]
+
+    sol1 = exp(round(aVect[0][0],5) * t) * v1
+    sol2 = exp(round(aVect[1][0],5) * t) * v1 * t + v2
     return [sol1, sol2]
 
 
@@ -83,7 +87,7 @@ def sfs(a, b, c, d, finished):
                 pasos.append(getPasoSFSMatrices(res,
                                                 "Como el autovalor es doble y la matriz es diagonalizable, el Sistema Fundamental de Soluciones se calcula igual que en el caso de autovalores reales distintos:"))
             else:  # autovalor doble, no diagonalizable
-                res = autovalorNoDiagonalizable(aVect)
+                res = autovalorNoDiagonalizable(A, aVect)
                 pasos.append(getPasoSFSMatrices(res,
                                                 "Como el autovalor es doble y la matriz no es diagonalizable, el Sistema Fundamental de Soluciones es:"))
     else:  # complejo

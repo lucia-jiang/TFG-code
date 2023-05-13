@@ -68,20 +68,9 @@ def string2float(frac_str: str):
     frac_str = frac_str.replace(',','.')
     try:
         return float2int(float(frac_str))
-    except ValueError:
+    except Exception:
         try:
             num, denom = frac_str.split(':')
-        except ValueError:
-            return None
-        try:
-            leading, num = num.split(' ')
-        except ValueError:
             return float(num) / float(denom)
-        try:
-            if float(leading) < 0:
-                sign_mult = -1
-            else:
-                sign_mult = 1
-        except Exception:
+        except ValueError:
             raise ExceptionNotANumber("Error: introduzca números reales")
-        return float(leading) + sign_mult * (float(num) / float(denom))
