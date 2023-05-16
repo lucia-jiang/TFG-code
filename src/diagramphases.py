@@ -30,4 +30,4 @@ def diagramaFase(a, b, c, d, delta, xlimInf, xlimSup, ylimInf, ylimSup, col):
 
     fig = ff.create_quiver(X, Y, U, V, line=dict(width=0.75, color='#'+col))  # campo
 
-    return getResponseGraph('x\'={}x+{}y, y\'={}x+{}y'.format(a,b,c,d), fig)
+    return getResponseGraph(fig)

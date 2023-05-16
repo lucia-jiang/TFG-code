@@ -120,15 +120,14 @@ def getPasoSolExplicita(sol1, sol2, descripcion: str) -> Paso:
     return Paso(paso, pasoLatex, descripcion)
 
 
-def getResponseGraph(func: str, figure: go.Figure):
+def getResponseGraph(figure: go.Figure):
     """
     Retorna una gráfica
-    :param func: función a graficar
     :param figure: figura html
     :return: Grafica
     """
     figure = figure.to_html()
-    return Grafica(func, figure).toJson()
+    return figure
 
 
 def autovalList2latex(l: list, n: int):
