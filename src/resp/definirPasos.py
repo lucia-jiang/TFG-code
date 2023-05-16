@@ -2,7 +2,6 @@ from latexifier import latexify
 import plotly.graph_objects as go
 from pytexit import py2tex
 
-from .obj.Grafica import Grafica
 from .obj.Paso import Paso
 from ..auxiliar.externalFunctions import symbols
 
@@ -124,7 +123,7 @@ def getResponseGraph(figure: go.Figure):
     """
     Retorna una gráfica
     :param figure: figura html
-    :return: Grafica
+    :return: html
     """
     figure = figure.to_html()
     return figure
