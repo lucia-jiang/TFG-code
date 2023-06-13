@@ -12,8 +12,8 @@ En este repositorio se encuentran los siguientes códigos:
 
 1. **Determinar el Sistema Fundamental de Soluciones:** dado 4 coeficientes de la matriz de coeficientes a,b,c y d se retorna el sfs en función del tipo de autovalores asociados al sistema (reales, iguales, diagonalizables...).
 2. **Solución explícita:** se resuelve los sistemas utilizando el sistema fundamental de soluciones.
-3. **Transformar ecuación de segundo grado a sistema:** dado una ecuación de segundo grado, se transforma en un sistema de dos ecuaciones de primer orden.
-4. **Resolución de una ecuación de segundo grado, pasándolo previamente a sistema:** se transforma la ecuación a sistema, y se resuelve.
+3. **Transformar ecuación de segundo orden a sistema:** dado una ecuación de segundo orden, se transforma en un sistema de dos ecuaciones de primer orden.
+4. **Resolución de una ecuación de segundo orden, pasándolo previamente a sistema:** se transforma la ecuación a sistema, y se resuelve.
 5. **Clasificación de puntos de equilibrio mediante los autovalores:** se clasifica el (0,0), el único punto de equilibrio en función de los autovalores.
 6. **Clasificación de puntos de equilibrio mediante la traza y el determinante:** se clasifica el (0,0), el único punto de equilibrio en función de la traza y el determinante de la matriz asociada al sistema.
 7. **Representación del diagrama de fases:** se muestra el diagrama de fases, dando opción a que el usuario pueda elegir los límites de los ejes y la precisión.

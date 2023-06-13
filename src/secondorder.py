@@ -31,7 +31,7 @@ def segundo_orden(a: float, b: float, c: float, solve: bool):
     pasoLatex = '\\begin{cases} x\'=y \\\\ y\'= ' + sist + '\\end{cases}'
 
     pasos.append(
-        Paso('x\' = y, y\' = -(c/a)x-(b/a)y', pasoLatex, 'El sistema equivalente a la ecuación de segundo grado es'))
+        Paso('x\' = y, y\' = -(c/a)x-(b/a)y', pasoLatex, 'El sistema equivalente a la ecuación de segundo orden es'))
     if solve:
         rpasos, sol = sol_explicita(0, 1, -c / a, -b / a, False)
         pasos = pasos + rpasos
