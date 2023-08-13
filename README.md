@@ -1,3 +1,33 @@
+# Bachelor's Thesis - Educational Application in Differential Equations
+
+This repository contains the code used for the completion of my Bachelor's Thesis in Mathematics and Computer Science. In this project, I developed an educational application focused on differential equations, specifically targeting linear systems, equilibrium points, and stability.
+
+## About the Project
+
+The project involved creating an interactive and educational tool for studying differential equations, with a particular emphasis on linear systems. The application allows users to input differential equations and observe the evolution of system points over time. Additionally, it provides information about equilibrium points and their stability.
+
+## Available Codes
+
+The following codes are available in this repository:
+
+1. **Determining the Fundamental System of Solutions:** Given four coefficients of the coefficient matrix (a, b, c, and d), this code returns the fundamental system of solutions based on the type of eigenvalues associated with the system (real, equal, diagonalizable, etc.).
+
+2. **Explicit Solution:** This code solves systems using the fundamental system of solutions.
+
+3. **Converting Second-Order Equation to a System:** Given a second-order equation, this code transforms it into a system of two first-order equations.
+
+4. **Solving a Second-Order Equation by Converting to a System:** This code converts the equation into a system and then solves it.
+
+5. **Classification of Equilibrium Points Using Eigenvalues:** This code classifies the origin (0,0), the unique equilibrium point, based on its eigenvalues.
+
+6. **Classification of Equilibrium Points Using Trace and Determinant:** This code classifies the origin (0,0), the unique equilibrium point, based on the trace and determinant of the associated matrix.
+
+7. **Phase Diagram Representation:** This code displays the phase diagram, allowing the user to select axis limits and precision.
+
+8. **Determining Topological Conjugacy of Two Systems:** Given two systems, this code determines whether they are topologically conjugate.
+
+-----------------------------------
+
 # Trabajo Fin de Grado - Aplicación Didáctica en Ecuaciones Diferenciales
 
 Este repositorio contiene los códigos utilizados para la realización de mi Trabajo Fin de Grado en Matemáticas e Informática, en el que desarrollé una aplicación didáctica en ecuaciones diferenciales, enfocada en sistemas lineales, puntos de equilibrio y estabilidad.
